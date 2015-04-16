@@ -9,10 +9,12 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.contentView.layer.cornerRadius = frame.width / 2.0
         self.backgroundColor = UIColor.clearColor()
+        self.alpha = 0.5
     }
 
     required init(coder aDecoder: NSCoder) {

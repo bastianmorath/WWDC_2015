@@ -10,13 +10,13 @@ import UIKit
 
 
 
-let array = ["Three", "One", "Two", "Three", "One"]
+let array = ["Three", "Four", "One", "Two" , "Three", "Four", "One"]
+let itemSize: CGFloat = UIScreen.mainScreen().bounds.width / 2.6
 
 class CollectionViewLayout: UICollectionViewLayout {
 
     
     let interimSpace: CGFloat = 0.0
-    let itemSize: CGFloat = UIScreen.mainScreen().bounds.width / 2.6
 
     var center: CGPoint {
         return CGPoint(x: (self.cViewSize.width) / 2.0,
@@ -46,8 +46,8 @@ class CollectionViewLayout: UICollectionViewLayout {
     }
 
     override func collectionViewContentSize() -> CGSize {
-        return CGSizeMake(self.itemSize * CGFloat(array.count),
-            self.itemSize * CGFloat(array.count))
+        return CGSizeMake(itemSize * CGFloat(array.count),
+            itemSize * CGFloat(array.count))
     }
 
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
@@ -67,11 +67,11 @@ class CollectionViewLayout: UICollectionViewLayout {
         let vIndex = (indexPath.item - oIndex) / array.count
 
         // TODO: itemSize geändert
-        var x = CGFloat(oIndex) * self.itemSize + itemSize/2
-        var y = CGFloat(vIndex) * self.itemSize + itemSize/2
+        var x = CGFloat(oIndex) * itemSize + itemSize/2
+        var y = CGFloat(vIndex) * itemSize + itemSize/2
 
         if vIndex % 2 != 0 {
-            x += self.itemSize / 2.0
+            //x += itemSize / 2.0
         }
 
         attributes.center = CGPoint(x: x, y: y)
@@ -86,7 +86,7 @@ class CollectionViewLayout: UICollectionViewLayout {
         z = z < 0.0 ? 0.0 : z
 
         attributes.transform = CGAffineTransformMakeScale(z, z)
-        attributes.size = CGSize(width: self.itemSize, height: self.itemSize)
+        attributes.size = CGSize(width: itemSize, height: itemSize)
         
         return attributes
     }
