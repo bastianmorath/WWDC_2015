@@ -9,18 +9,20 @@
 import UIKit
 // TODO: Rotate Device backgroundlayer animieren
 
-class ViewController: UIViewController, UICollectionViewDelegate {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
     var backgroundLayer: CAGradientLayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = UIColor.whiteColor()
         self.collectionView.collectionViewLayout = CollectionViewLayout()
         self.collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         self.collectionView.backgroundColor = UIColor.whiteColor()
-        self.collectionView.alpha = 0.7
+        self.collectionView.alpha = 0.6
+        self.collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
 
         let colors = Colors()
         backgroundLayer = colors.gl
@@ -32,8 +34,15 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
         visualEffectView.frame = view.bounds
         view.insertSubview(visualEffectView, atIndex: 0)
-        //self.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Left, animated: false)
+        self.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 2, inSection: 0), atScrollPosition: .CenteredHorizontally, animated: false)
 
+        var image = UIImage(named: "profileImage.jpg")
+
+        imageView = UIImageView(image: image )
+
+
+        imageView.layer.cornerRadius = imageView.frame.size.height/2
+        imageView.clipsToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,39 +50,49 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return array.count * array.count
     }
 
+
+    var imageView:UIImageView!
+
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! CollectionViewCell
 
-        var color:CGFloat!
-
-        if indexPath.row % 7 == 0{
+        var color:CGFloat = 0.0
+        if indexPath.row % 4 == 0{
             color = 0.6
         }
-        if indexPath.row % 7 == 1{
+        if indexPath.row % 4 == 1{
             color = 0.8
         }
-        if indexPath.row % 7 == 2{
+        if indexPath.row % 4 == 2{
             color = 0.2
         }
-        if indexPath.row % 7 == 3{
+        if indexPath.row % 4 == 3{
             color = 0.4
         }
-        if indexPath.row % 7 == 4{
+        if indexPath.row % 4 == 4{
             color = 0.6
         }
-        if indexPath.row % 7 == 5{
+        if indexPath.row % 4 == 5{
             color = 0.8
+            imageView.frame = cell.contentView.frame
+
+            cell.contentView.addSubview(imageView)
+
         }
-        if indexPath.row % 7 == 6{
-            color = 0.2
-        }
+
+
         cell.contentView.layer.backgroundColor = UIColor(red: color+0.3, green: color-0.2, blue: color-0.3, alpha: 1).CGColor
-
-
+        imageView.removeFromSuperview()
+        if indexPath.row % 7 == 1{
+            color = 0.8
+            imageView.frame = cell.contentView.frame
+            cell.contentView.addSubview(imageView)
+        }
         return cell
     }
 
@@ -93,75 +112,26 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         if (currentOffSetX > (contentWidth / CGFloat(array.count) * 4)) {
             scrollView.contentOffset = CGPointMake(currentOffSetX - (contentWidth * CGFloat(array.count)/CGFloat(array.count - 1) / 2),(currentOffSetY ));
         }
-        //
-        //        if (CGFloat(FLT_MIN) == lastContentOffsetX) {
-        //            lastContentOffsetX = scrollView.contentOffset.x;
-        //            lastContentOffsetY = scrollView.contentOffset.y;
-        //
-        //            return;
-        //        }
-        //
-        //        let currentOffsetX = scrollView.contentOffset.x
-        //        let currentOffsetY = scrollView.contentOffset.y
-        //
-        //        let pageWidth = scrollView.frame.size.width
-        //        let verticalOffset = pageWidth * CGFloat(array.count - 2)
-        //
-        //        if (currentOffsetX < pageWidth && lastContentOffsetX  > currentOffsetX) {
-        //            lastContentOffsetX = currentOffsetX + verticalOffset;
-        //            scrollView.contentOffset = CGPoint(x: lastContentOffsetX, y: currentOffsetY)
-        //        }
-        //            // the last page (showing the first item) is visible and the user is still scrolling to the right
-        //        else if (currentOffsetX > verticalOffset && lastContentOffsetX < currentOffsetX) {
-        //            lastContentOffsetX = currentOffsetX - verticalOffset ;
-        //            scrollView.contentOffset = CGPoint(x: lastContentOffsetX, y: currentOffsetY)
-        //        } else {
-        //            lastContentOffsetX = currentOffsetX;
-        //        }
-
-
-        //
-        //            // Calculate where the collection view should be at the right-hand end item
-        //            let contentOffsetWhenFullyScrolledRight = self.collectionView.frame.size.width * CGFloat(array.count - 1);
-        //
-        //            if (scrollView.contentOffset.x == contentOffsetWhenFullyScrolledRight) {
-        //
-        //                // user is scrolling to the right from the last item to the 'fake' item 1.
-        //                // reposition offset to show the 'real' item 1 at the left-hand end of the collection view
-        //
-        //                let newIndexPath = NSIndexPath(forRow: 1, inSection: 0)
-        //
-        //                self.collectionView.scrollToItemAtIndexPath(newIndexPath, atScrollPosition: .Left, animated: false)
-        //
-        //
-        //            } else if (scrollView.contentOffset.x == 0)  {
-        //
-        //                // user is scrolling to the left from the first item to the fake 'item N'.
-        //                // reposition offset to show the 'real' item N at the right end end of the collection view
-        //
-        //                let newIndexPath = NSIndexPath(forRow: array.count-2, inSection: 0)
-        //
-        //                self.collectionView.scrollToItemAtIndexPath(newIndexPath, atScrollPosition: .Left, animated: false)
-        //            }
-
     }
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let collectionViewHeight = CGRectGetHeight(self.collectionView.frame);
-        //collectionView.contentInset = UIEdgeInsetsMake(collectionViewHeight / 2, 0, collectionViewHeight / 2, 0)
+        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+        if let savedIndexPath = (collectionView.collectionViewLayout as! CollectionViewLayout).indexPathForPressedCell.1{
+            (collectionView.collectionViewLayout as! CollectionViewLayout).indexPathForPressedCell = (true, indexPath)
 
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
-        let offset = CGPointMake(0,  cell!.center.y - collectionViewHeight / 2);
-        collectionView.setContentOffset(offset, animated: true)
-        println(cell?.frame)
-        println(cell?.bounds)
+            collectionView.reloadItemsAtIndexPaths([indexPath,savedIndexPath ])
+            return
+        }
+        (collectionView.collectionViewLayout as! CollectionViewLayout).indexPathForPressedCell = (true, indexPath)
+        (collectionView.collectionViewLayout as! CollectionViewLayout).itemSize = 300
+        collectionView.reloadItemsAtIndexPaths([indexPath])
+
     }
 
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         backgroundLayer.frame = view.frame
 
     }
-
 
 }
 

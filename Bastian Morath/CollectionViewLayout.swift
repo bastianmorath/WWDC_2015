@@ -10,13 +10,15 @@ import UIKit
 
 
 
-let array = ["Three", "Four", "One", "Two" , "Three", "Four", "One"]
-let itemSize: CGFloat = UIScreen.mainScreen().bounds.width / 2.6
+let array = [3,4,1,2,3,4,1]
 
 class CollectionViewLayout: UICollectionViewLayout {
 
-    
     let interimSpace: CGFloat = 0.0
+
+    var itemSize: CGFloat = UIScreen.mainScreen().bounds.width / 2.6
+
+    var indexPathForPressedCell: (Bool, NSIndexPath?) = (false,nil)
 
     var center: CGPoint {
         return CGPoint(x: (self.cViewSize.width) / 2.0,
@@ -65,15 +67,21 @@ class CollectionViewLayout: UICollectionViewLayout {
 
         let oIndex = indexPath.item % array.count
         let vIndex = (indexPath.item - oIndex) / array.count
+        var x = 50 as CGFloat
+        var y = 50 as CGFloat
 
+        var size = itemSize
+        if !(indexPathForPressedCell.0 && indexPathForPressedCell.1 == indexPath){
+            size = UIScreen.mainScreen().bounds.width / 2.6
+        }
         // TODO: itemSize geändert
-        var x = CGFloat(oIndex) * itemSize + itemSize/2
-        var y = CGFloat(vIndex) * itemSize + itemSize/2
+
+        x = CGFloat(oIndex) * size + size/2
+        y = CGFloat(vIndex) * size + size/2
 
         if vIndex % 2 != 0 {
-            //x += itemSize / 2.0
+            x += itemSize / 2.0
         }
-
         attributes.center = CGPoint(x: x, y: y)
 
         let offset = self.collectionView!.contentOffset
@@ -86,8 +94,8 @@ class CollectionViewLayout: UICollectionViewLayout {
         z = z < 0.0 ? 0.0 : z
 
         attributes.transform = CGAffineTransformMakeScale(z, z)
-        attributes.size = CGSize(width: itemSize, height: itemSize)
-        
+        attributes.size = CGSize(width: size, height: size)
+
         return attributes
     }
 
