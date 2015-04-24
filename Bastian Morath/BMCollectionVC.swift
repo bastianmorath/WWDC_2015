@@ -50,15 +50,15 @@ class BMCollectionVC: UICollectionViewController {
     var lastContentOffsetY = CGFloat(FLT_MIN)
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        let currentOffSetX = scrollView.contentOffset.x + 70;
+        let currentOffSetX = scrollView.contentOffset.x;
         let currentOffSetY = scrollView.contentOffset.y;
         let contentWidth = scrollView.contentSize.width;
 
-        if (currentOffSetX < (contentWidth / CGFloat(array.count))) {
-            //scrollView.contentOffset = CGPointMake(currentOffSetX + (contentWidth * CGFloat(array.count)/CGFloat(array.count - 1) / 2),(currentOffSetY ));
+        if (currentOffSetX < (contentWidth / CGFloat(array.count))-41) {
+            scrollView.contentOffset = CGPointMake(currentOffSetX + 40 + (contentWidth * CGFloat(array.count)/CGFloat(array.count-2) / 2),(currentOffSetY ));
         }
-        if (currentOffSetX > (contentWidth / CGFloat(array.count) * 7.5)) {
-            scrollView.contentOffset = CGPointMake(currentOffSetX - (contentWidth * CGFloat(array.count)/CGFloat(array.count-3) / 2),(currentOffSetY ));
+        if (currentOffSetX > (contentWidth / CGFloat(array.count) * 7.5)+81)  {
+            scrollView.contentOffset = CGPointMake(currentOffSetX + 80 - (contentWidth * CGFloat(array.count)/CGFloat(array.count-3) / 2),(currentOffSetY ));
         }
     }
 

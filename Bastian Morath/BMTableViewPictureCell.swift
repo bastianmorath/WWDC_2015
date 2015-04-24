@@ -39,25 +39,35 @@ class BMTableViewPictureCell: UITableViewCell {
 
     func configureWithTopic(topic: Factory.BMTopic){
         var image: UIImage?
+
         switch topic{
         case .About:
             image = UIImage(named: "profileImage.jpg")
         case .education:
             image = UIImage(named: "education")
+            image = image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         case .coding:
             image = UIImage(named: "coding")
+            image = image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         case .traveling:
-            image = UIImage(named: "traveling")
+            image = UIImage(named: "travelingx3.png")
+            image = image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+
         case .handball:
             image = UIImage(named: "handball")
+            image = image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         case .guitar:
             image = UIImage(named: "guitar")
+            image = image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         case .golfing:
             image = UIImage(named: "golfing")
+            image = image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         default:
             image = nil
         }
+        pictureImageView.tintColor = .whiteColor()
         pictureImageView?.image = image
+     
 
     }
 

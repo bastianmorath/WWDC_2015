@@ -14,7 +14,6 @@
 		B6A0E40B1AE9A5BC00DBC66F /* BMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E40A1AE9A5BC00DBC66F /* BMButton.swift */; };
 		B6A0E40D1AE9A71E00DBC66F /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E40C1AE9A71E00DBC66F /* cross.png */; };
 		B6A0E40F1AE9AE5A00DBC66F /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E40E1AE9AE5A00DBC66F /* about.png */; };
-		B6A0E4131AE9B5F600DBC66F /* traveling.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4121AE9B5F600DBC66F /* traveling.png */; };
 		B6A0E4151AE9B7BF00DBC66F /* coding.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4141AE9B7BF00DBC66F /* coding.png */; };
 		B6A0E4191AE9C02A00DBC66F /* education.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4181AE9C02A00DBC66F /* education.png */; };
 		B6A0E41B1AE9C02E00DBC66F /* guitar.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E41A1AE9C02E00DBC66F /* guitar.png */; };
@@ -24,8 +23,11 @@
 		B6A0E42A1AE9D42B00DBC66F /* BMTableViewTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E4281AE9D42B00DBC66F /* BMTableViewTextCell.swift */; };
 		B6A0E42D1AE9F85B00DBC66F /* BMTableViewPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E42C1AE9F85B00DBC66F /* BMTableViewPictureCell.swift */; };
 		B6A0E42F1AEA0AED00DBC66F /* BMFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E42E1AEA0AED00DBC66F /* BMFile.swift */; };
-		B6A0E4311AEA0D2F00DBC66F /* xcodeFile.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4301AEA0D2F00DBC66F /* xcodeFile.rtf */; };
 		B6A0E4341AEA11DD00DBC66F /* BMStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E4331AEA11DD00DBC66F /* BMStrings.swift */; };
+		B6A0E4361AEA184000DBC66F /* travelingImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4351AEA184000DBC66F /* travelingImage.jpg */; };
+		B6A0E4421AEA1FB000DBC66F /* travelingx2.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4411AEA1FB000DBC66F /* travelingx2.png */; };
+		B6A0E4441AEA1FED00DBC66F /* traveling.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4431AEA1FED00DBC66F /* traveling.png */; };
+		B6A0E4461AEA204800DBC66F /* travelingx3.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4451AEA204800DBC66F /* travelingx3.png */; };
 		B6B19BE71ADD84E7006FDE40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B19BE61ADD84E7006FDE40 /* AppDelegate.swift */; };
 		B6B19BE91ADD84E7006FDE40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B19BE81ADD84E7006FDE40 /* ViewController.swift */; };
 		B6B19BEC1ADD84E7006FDE40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6B19BEA1ADD84E7006FDE40 /* Main.storyboard */; };
@@ -55,7 +57,6 @@
 		B6A0E40A1AE9A5BC00DBC66F /* BMButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMButton.swift; sourceTree = "<group>"; };
 		B6A0E40C1AE9A71E00DBC66F /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		B6A0E40E1AE9AE5A00DBC66F /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
-		B6A0E4121AE9B5F600DBC66F /* traveling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = traveling.png; sourceTree = "<group>"; };
 		B6A0E4141AE9B7BF00DBC66F /* coding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coding.png; sourceTree = "<group>"; };
 		B6A0E4181AE9C02A00DBC66F /* education.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = education.png; sourceTree = "<group>"; };
 		B6A0E41A1AE9C02E00DBC66F /* guitar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guitar.png; sourceTree = "<group>"; };
@@ -65,8 +66,11 @@
 		B6A0E4281AE9D42B00DBC66F /* BMTableViewTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMTableViewTextCell.swift; sourceTree = "<group>"; };
 		B6A0E42C1AE9F85B00DBC66F /* BMTableViewPictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMTableViewPictureCell.swift; sourceTree = "<group>"; };
 		B6A0E42E1AEA0AED00DBC66F /* BMFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMFile.swift; sourceTree = "<group>"; };
-		B6A0E4301AEA0D2F00DBC66F /* xcodeFile.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = xcodeFile.rtf; sourceTree = "<group>"; };
 		B6A0E4331AEA11DD00DBC66F /* BMStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMStrings.swift; sourceTree = "<group>"; };
+		B6A0E4351AEA184000DBC66F /* travelingImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = travelingImage.jpg; sourceTree = "<group>"; };
+		B6A0E4411AEA1FB000DBC66F /* travelingx2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = travelingx2.png; sourceTree = "<group>"; };
+		B6A0E4431AEA1FED00DBC66F /* traveling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = traveling.png; sourceTree = "<group>"; };
+		B6A0E4451AEA204800DBC66F /* travelingx3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = travelingx3.png; sourceTree = "<group>"; };
 		B6B19BE11ADD84E7006FDE40 /* Bastian Morath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bastian Morath.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6B19BE51ADD84E7006FDE40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6B19BE61ADD84E7006FDE40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,14 +158,16 @@
 			isa = PBXGroup;
 			children = (
 				B6A0E40C1AE9A71E00DBC66F /* cross.png */,
-				B6A0E4301AEA0D2F00DBC66F /* xcodeFile.rtf */,
+				B6A0E4431AEA1FED00DBC66F /* traveling.png */,
+				B6A0E4411AEA1FB000DBC66F /* travelingx2.png */,
+				B6A0E4451AEA204800DBC66F /* travelingx3.png */,
 				B6A0E4141AE9B7BF00DBC66F /* coding.png */,
 				B6A0E41C1AE9C03200DBC66F /* golfing.png */,
 				B6A0E4201AE9C27300DBC66F /* handball.png */,
 				B6A0E41A1AE9C02E00DBC66F /* guitar.png */,
 				B6A0E4181AE9C02A00DBC66F /* education.png */,
 				B6A0E40E1AE9AE5A00DBC66F /* about.png */,
-				B6A0E4121AE9B5F600DBC66F /* traveling.png */,
+				B6A0E4351AEA184000DBC66F /* travelingImage.jpg */,
 				B655DD461AE0821700E70EFF /* profileImage.jpg */,
 				B6B19C0C1ADDF781006FDE40 /* image.PNG */,
 				B6B19BE51ADD84E7006FDE40 /* Info.plist */,
@@ -269,16 +275,18 @@
 				B6B19C0D1ADDF781006FDE40 /* image.PNG in Resources */,
 				B6B19BEC1ADD84E7006FDE40 /* Main.storyboard in Resources */,
 				B6A0E41B1AE9C02E00DBC66F /* guitar.png in Resources */,
+				B6A0E4461AEA204800DBC66F /* travelingx3.png in Resources */,
+				B6A0E4361AEA184000DBC66F /* travelingImage.jpg in Resources */,
 				B6A0E4211AE9C27300DBC66F /* handball.png in Resources */,
 				B6A0E40D1AE9A71E00DBC66F /* cross.png in Resources */,
 				B6A0E40F1AE9AE5A00DBC66F /* about.png in Resources */,
 				B655DD471AE0821700E70EFF /* profileImage.jpg in Resources */,
 				B6A0E41D1AE9C03200DBC66F /* golfing.png in Resources */,
-				B6A0E4311AEA0D2F00DBC66F /* xcodeFile.rtf in Resources */,
+				B6A0E4421AEA1FB000DBC66F /* travelingx2.png in Resources */,
 				B6A0E4151AE9B7BF00DBC66F /* coding.png in Resources */,
 				B6B19BF11ADD84E7006FDE40 /* LaunchScreen.xib in Resources */,
-				B6A0E4131AE9B5F600DBC66F /* traveling.png in Resources */,
 				B6A0E4191AE9C02A00DBC66F /* education.png in Resources */,
+				B6A0E4441AEA1FED00DBC66F /* traveling.png in Resources */,
 				B6B19BEE1ADD84E7006FDE40 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +449,7 @@
 				INFOPLIST_FILE = "Bastian Morath/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -451,6 +460,7 @@
 				INFOPLIST_FILE = "Bastian Morath/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

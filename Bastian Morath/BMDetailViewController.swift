@@ -54,7 +54,7 @@ class BMDetailViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
      func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.row{
@@ -72,7 +72,7 @@ class BMDetailViewController: UIViewController, UITableViewDelegate, UITableView
         switch indexPath.row {
         case 0:
             var cell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell") as! BMTableViewPictureCell
-            cell.configureWithTopic(.About)
+            cell.configureWithTopic(self.topic)
             println(cell.pictureImageView.frame )
 
             return cell
