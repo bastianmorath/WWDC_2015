@@ -8,7 +8,7 @@
 
 import UIKit
 
-let kAnimationDuration = 0.5
+let kAnimationDuration = 0.2
 let kPopUpFrame: CGRect = CGRectMake(kMargin, kMargin, UIScreen.mainScreen().bounds.width - 2 * kMargin, UIScreen.mainScreen().bounds.height - 2 * kMargin)
 let kMargin = 10 as CGFloat
 class Factory{
@@ -76,7 +76,7 @@ class Factory{
         }
     }
 
-    class func systemFOntWithSize(size: CGFloat) -> UIFont{
+    class func systemFontWithSize(size: CGFloat) -> UIFont{
         return UIFont(name: "HelveticaNeue-Light", size: size)!
     }
 

@@ -36,7 +36,7 @@ class BMLabel: UILabel {
         self.backgroundColor = .clearColor()
         self.numberOfLines = 0
         self.textColor = .whiteColor()
-        self.font = Factory.systemFOntWithSize(15)
+        self.font = Factory.systemFontWithSize(15)
 
         self.frame = kPopUpFrame
     }

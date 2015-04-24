@@ -10,8 +10,7 @@ import UIKit
 
 class BMTableViewTextCell: UITableViewCell {
 
-    @IBOutlet weak var testLabel: UILabel!
-    var label: UILabel!
+    @IBOutlet weak var label: UILabel!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -30,8 +29,10 @@ class BMTableViewTextCell: UITableViewCell {
         // Initialization code
 
         self.backgroundColor = .clearColor()
-        label = UILabel(frame: CGRectMake(0, 0, 100, 100))
-        label.font = Factory.systemFOntWithSize(15)
+        //label = UILabel(frame: CGRectMake(0, 0, 100, 100))
+        label.font = Factory.systemFontWithSize(15)
+        label.setTranslatesAutoresizingMaskIntoConstraints( false )
+
     }
 
 

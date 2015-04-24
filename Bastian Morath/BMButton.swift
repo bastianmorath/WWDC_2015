@@ -32,12 +32,15 @@ class BMButton: UIButton {
         self.setTranslatesAutoresizingMaskIntoConstraints( false )
         self.showsTouchWhenHighlighted = false
         var imageView = UIImageView(frame: CGRectMake(0, 0, kSize, kSize))
+        imageView.tintColor = UIColor.whiteColor()
         switch type {
         case .Close:
             imageView.image = UIImage(named: "cross.png")
         default:
             imageView.image = UIImage()
         }
+        imageView.image = imageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+
         self.addSubview(imageView)
 
     }

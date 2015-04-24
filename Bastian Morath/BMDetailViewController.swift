@@ -57,14 +57,33 @@ class BMDetailViewController: UIViewController, UITableViewDelegate, UITableView
         return 3
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 70
+        switch indexPath.row{
+        case 0:
+            return UIScreen.mainScreen().bounds.width/2 + 100
+        case 1:
+            return 200
+        default:
+            return 100
+        }
     }
 
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-         var cell:BMTableViewTextCell = self.tableView.dequeueReusableCellWithIdentifier("textCell") as! BMTableViewTextCell
-        cell.testLabel.text = "test"
-        return cell
 
+        switch indexPath.row {
+        case 0:
+            var cell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell") as! BMTableViewPictureCell
+            cell.configureWithTopic(.About)
+            println(cell.pictureImageView.frame )
+
+            return cell
+        case 1:
+            var cell = self.tableView.dequeueReusableCellWithIdentifier("textCell") as! BMTableViewTextCell
+            cell.label.text =  BMStrings.aboutMyselfString
+
+            return cell
+        default:
+            return self.tableView.dequeueReusableCellWithIdentifier("textCell") as! UITableViewCell
+        }
     }
 
     

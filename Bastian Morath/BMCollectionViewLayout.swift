@@ -91,20 +91,11 @@ class BMCollectionViewLayout: UICollectionViewFlowLayout, UICollectionViewDelega
         var x = 0 as CGFloat
         var y = 0 as CGFloat
         var size: CGFloat = defaultSize
-//        if (indexPathForPressedCell.0 == true && indexPathForPressedCell.1 == indexPath){
-//            size = enlargedSize
-//        }
-        // TODO: itemSize geändert
 
         x = CGFloat(oIndex) * size + size/2
         y = CGFloat(vIndex) * size + size/2
 
-//        if indexPathForPressedCell.0 == true && indexPathForPressedCell.1!.item % array.count > oIndex{
-//            x += enlargedSize - defaultSize
-//        }
-//        if indexPathForPressedCell.0 == true && (indexPath.item - (indexPathForPressedCell.1!.item % array.count)) / array.count > oIndex{
-//            y += enlargedSize - defaultSize
-//        }
+
         if vIndex % 2 != 0 {
             x += defaultSize / 2.0
         }
