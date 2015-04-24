@@ -9,16 +9,18 @@
 import UIKit
 
 
+class BMCollectionViewLayout: UICollectionViewFlowLayout, UICollectionViewDelegateFlowLayout {
 
-let array = [3,4,1,2,3,4,1]
-
-class CollectionViewLayout: UICollectionViewLayout {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(200, 200)
+    }
+    
 
     let interimSpace: CGFloat = 0.0
-
-    var itemSize: CGFloat = UIScreen.mainScreen().bounds.width / 2.6
-
     var indexPathForPressedCell: (Bool, NSIndexPath?) = (false,nil)
+
+    var defaultSize: CGFloat = UIScreen.mainScreen().bounds.width / 2.6
+    var enlargedSize: CGFloat = 300
 
     var center: CGPoint {
         return CGPoint(x: (self.cViewSize.width) / 2.0,
@@ -43,13 +45,31 @@ class CollectionViewLayout: UICollectionViewLayout {
 
     let c: CGFloat = 20
 
+    override init() {
+        super.init()
+    }
+    convenience init(bool: Bool, indexPath: NSIndexPath?){
+        self.init()
+        indexPathForPressedCell = (bool, indexPath)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
         return true
     }
 
     override func collectionViewContentSize() -> CGSize {
-        return CGSizeMake(itemSize * CGFloat(array.count),
-            itemSize * CGFloat(array.count))
+        if indexPathForPressedCell.0 == true {
+            return CGSizeMake(defaultSize * CGFloat(array.count-1) + enlargedSize ,
+                defaultSize * CGFloat(array.count-1) + enlargedSize)
+
+        }
+        return CGSizeMake(defaultSize * CGFloat(array.count),
+            defaultSize * CGFloat(array.count))
+
     }
 
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
@@ -67,20 +87,26 @@ class CollectionViewLayout: UICollectionViewLayout {
 
         let oIndex = indexPath.item % array.count
         let vIndex = (indexPath.item - oIndex) / array.count
-        var x = 50 as CGFloat
-        var y = 50 as CGFloat
 
-        var size = itemSize
-        if !(indexPathForPressedCell.0 && indexPathForPressedCell.1 == indexPath){
-            size = UIScreen.mainScreen().bounds.width / 2.6
-        }
+        var x = 0 as CGFloat
+        var y = 0 as CGFloat
+        var size: CGFloat = defaultSize
+//        if (indexPathForPressedCell.0 == true && indexPathForPressedCell.1 == indexPath){
+//            size = enlargedSize
+//        }
         // TODO: itemSize geändert
 
         x = CGFloat(oIndex) * size + size/2
         y = CGFloat(vIndex) * size + size/2
 
+//        if indexPathForPressedCell.0 == true && indexPathForPressedCell.1!.item % array.count > oIndex{
+//            x += enlargedSize - defaultSize
+//        }
+//        if indexPathForPressedCell.0 == true && (indexPath.item - (indexPathForPressedCell.1!.item % array.count)) / array.count > oIndex{
+//            y += enlargedSize - defaultSize
+//        }
         if vIndex % 2 != 0 {
-            x += itemSize / 2.0
+            x += defaultSize / 2.0
         }
         attributes.center = CGPoint(x: x, y: y)
 
@@ -95,8 +121,6 @@ class CollectionViewLayout: UICollectionViewLayout {
 
         attributes.transform = CGAffineTransformMakeScale(z, z)
         attributes.size = CGSize(width: size, height: size)
-
         return attributes
     }
-
 }
