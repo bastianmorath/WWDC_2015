@@ -8,20 +8,23 @@
 
 import UIKit
 
-class BMDetailViewController: UIViewController {
+class BMDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var topic: Factory.BMTopic!
     var cellFrame: CGRect!
 
+
+    @IBOutlet weak var tableView: UITableView!
+    //var tableView: UITableView!
+
+    var label :BMLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = UIView(frame: cellFrame)
+        var frame = self.view.frame
         self.view.backgroundColor = Factory.colorForTopic(topic)
         self.view.layer.cornerRadius = cellFrame.width / 2
         self.view.layer.masksToBounds = true
-
-
-           }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -34,12 +37,8 @@ class BMDetailViewController: UIViewController {
         self.view.addSubview(closeButton)
         closeButton.position()
         closeButton.addTarget(self, action: "closePressed", forControlEvents: .TouchUpInside)
-
-        let textView = UITextView(frame: self.view.bounds)
-        textView.text = "aklsjhfkjlhaksdjlfhkjhasdkfkjlhalkdsjfhlkjhasdkjlfhkjahsdkjlfhkjlasdlfkjbajsbdfjkkasdbfasdufhialuhsdfiuhaiusdhfliuasdf"
-        //self.view.addSubview(textView)
-
     }
+
 
     func closePressed(){
         UIView.animateWithDuration(kAnimationDuration, animations: { () -> Void in
@@ -53,4 +52,20 @@ class BMDetailViewController: UIViewController {
         })
 
     }
+
+     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70
+    }
+
+     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+         var cell:BMTableViewTextCell = self.tableView.dequeueReusableCellWithIdentifier("textCell") as! BMTableViewTextCell
+        cell.testLabel.text = "test"
+        return cell
+
+    }
+
+    
 }

@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     var backgroundLayer: CAGradientLayer!
 
+    @IBOutlet weak var nameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 

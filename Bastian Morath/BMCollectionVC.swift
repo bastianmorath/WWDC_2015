@@ -68,19 +68,15 @@ class BMCollectionVC: UICollectionViewController {
 
 
         let kMargin: CGFloat = 10
-        var endFrame = self.view.convertRect(self.view.frame, toView: self.collectionView)
-        endFrame.origin.x += kMargin
-        endFrame.origin.y += kMargin
-        endFrame.size.width -= 2 * kMargin
-        endFrame.size.height -= 2 * kMargin
-        self.expandingViewController = BMDetailViewController()
+        var endFrame = collectionView.convertRect(kPopUpFrame, fromView: self.view)
+        self.expandingViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("detailVC") as! BMDetailViewController
         self.expandingViewController.topic = Factory.BMTopic(rawValue: (indexPath.row%7))
         self.expandingViewController.cellFrame = cell!.frame
-
-        collectionView.addSubview(expandingViewController.view)
+        self.expandingViewController.view.frame = cell!.frame
         self.addChildViewController(expandingViewController)
 
-
+        collectionView.addSubview(expandingViewController.view)
+        self.expandingViewController.didMoveToParentViewController(self)
         UIView.animateWithDuration(kAnimationDuration, animations: { () -> Void in
             self.expandingViewController.view.frame = endFrame
             }, completion: { (Bool) -> Void in

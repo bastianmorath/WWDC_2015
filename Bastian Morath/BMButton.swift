@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let kMargin = 20 as CGFloat
+
 let kSize = 25 as CGFloat
 
 class BMButton: UIButton {
@@ -51,7 +51,7 @@ class BMButton: UIButton {
         let views = ["button" : self]
         /// margin: Abstand der Buttons zum Rand
         /// topSpace: Abstand des shareLocationButtons zum oberen Rand -> floated zwischen TableView und Map
-        let metrics = ["margin": kMargin]
+        let metrics = ["margin": kMargin+10]
 
         //Höhe und Breite des Buttons
         var heightConstraint = "V:[button(\(kSize))]"

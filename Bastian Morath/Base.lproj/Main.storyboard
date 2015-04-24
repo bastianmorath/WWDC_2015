@@ -2,8 +2,83 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Detail View Controller-->
+        <scene sceneID="bc8-Mv-KnK">
+            <objects>
+                <viewController storyboardIdentifier="detailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9h9-Ek-E28" customClass="BMDetailViewController" customModule="Bastian_Morath" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Auc-6Z-LSl"/>
+                        <viewControllerLayoutGuide type="bottom" id="lES-aC-Ujj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lPA-qE-vZy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pdE-MR-5x4">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="515"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="textCell" rowHeight="118" id="a0a-zx-DbB" customClass="BMTableViewTextCell" customModule="Bastian_Morath" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="600" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a0a-zx-DbB" id="xsT-Xs-RqP">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Syy-gK-rnE">
+                                                    <rect key="frame" x="279" y="48" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="Syy-gK-rnE" secondAttribute="centerY" id="BM4-J4-RsN"/>
+                                                <constraint firstItem="Syy-gK-rnE" firstAttribute="leading" secondItem="xsT-Xs-RqP" secondAttribute="leadingMargin" constant="10" id="NmB-T5-I7i"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Syy-gK-rnE" secondAttribute="trailing" constant="10" id="SL6-bo-1aN"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Syy-gK-rnE" secondAttribute="bottom" constant="10" id="aRX-B7-ZS6"/>
+                                                <constraint firstItem="Syy-gK-rnE" firstAttribute="top" secondItem="xsT-Xs-RqP" secondAttribute="topMargin" constant="10" id="gfc-2p-Mrb"/>
+                                                <constraint firstAttribute="centerX" secondItem="Syy-gK-rnE" secondAttribute="centerX" id="kob-8T-Lel"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="BM4-J4-RsN"/>
+                                                    <exclude reference="kob-8T-Lel"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="label" destination="Syy-gK-rnE" id="K90-Ja-q9V"/>
+                                            <outlet property="testLabel" destination="Syy-gK-rnE" id="7s3-bw-4AL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9h9-Ek-E28" id="VJ4-f9-i6O"/>
+                                    <outlet property="delegate" destination="9h9-Ek-E28" id="BS8-HT-Zpl"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="pdE-MR-5x4" secondAttribute="trailing" id="IeC-QM-tdo"/>
+                            <constraint firstItem="lES-aC-Ujj" firstAttribute="top" secondItem="pdE-MR-5x4" secondAttribute="bottom" id="Lvu-pl-46x"/>
+                            <constraint firstItem="pdE-MR-5x4" firstAttribute="top" secondItem="lPA-qE-vZy" secondAttribute="topMargin" constant="50" id="P00-rP-RqZ"/>
+                            <constraint firstItem="pdE-MR-5x4" firstAttribute="leading" secondItem="lPA-qE-vZy" secondAttribute="leadingMargin" id="bbG-Jb-Pcd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="pdE-MR-5x4" id="fpk-xf-l1s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XLm-2O-C1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="184" y="-1631"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -32,6 +107,9 @@
                             <constraint firstAttribute="centerX" secondItem="P21-Z7-xAq" secondAttribute="centerX" constant="-0.5" id="qEb-Ns-fRU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="P21-Z7-xAq" id="daf-qL-Bn1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

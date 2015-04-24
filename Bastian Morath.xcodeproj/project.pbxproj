@@ -12,7 +12,7 @@
 		B674CEBF1AE83B09002B6D23 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B674CEBE1AE83B09002B6D23 /* Factory.swift */; };
 		B6A0E4091AE995BD00DBC66F /* BMDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E4081AE995BD00DBC66F /* BMDetailViewController.swift */; };
 		B6A0E40B1AE9A5BC00DBC66F /* BMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E40A1AE9A5BC00DBC66F /* BMButton.swift */; };
-		B6A0E40D1AE9A71E00DBC66F /* crossIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E40C1AE9A71E00DBC66F /* crossIcon.png */; };
+		B6A0E40D1AE9A71E00DBC66F /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E40C1AE9A71E00DBC66F /* cross.png */; };
 		B6A0E40F1AE9AE5A00DBC66F /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E40E1AE9AE5A00DBC66F /* about.png */; };
 		B6A0E4131AE9B5F600DBC66F /* traveling.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4121AE9B5F600DBC66F /* traveling.png */; };
 		B6A0E4151AE9B7BF00DBC66F /* coding.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4141AE9B7BF00DBC66F /* coding.png */; };
@@ -20,6 +20,9 @@
 		B6A0E41B1AE9C02E00DBC66F /* guitar.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E41A1AE9C02E00DBC66F /* guitar.png */; };
 		B6A0E41D1AE9C03200DBC66F /* golfing.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E41C1AE9C03200DBC66F /* golfing.png */; };
 		B6A0E4211AE9C27300DBC66F /* handball.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A0E4201AE9C27300DBC66F /* handball.png */; };
+		B6A0E4231AE9C8A300DBC66F /* BMLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E4221AE9C8A300DBC66F /* BMLabel.swift */; };
+		B6A0E42A1AE9D42B00DBC66F /* BMTableViewTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E4281AE9D42B00DBC66F /* BMTableViewTextCell.swift */; };
+		B6A0E42D1AE9F85B00DBC66F /* BMTableViewPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0E42C1AE9F85B00DBC66F /* BMTableViewPictureCell.swift */; };
 		B6B19BE71ADD84E7006FDE40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B19BE61ADD84E7006FDE40 /* AppDelegate.swift */; };
 		B6B19BE91ADD84E7006FDE40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B19BE81ADD84E7006FDE40 /* ViewController.swift */; };
 		B6B19BEC1ADD84E7006FDE40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6B19BEA1ADD84E7006FDE40 /* Main.storyboard */; };
@@ -47,7 +50,7 @@
 		B674CEBE1AE83B09002B6D23 /* Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		B6A0E4081AE995BD00DBC66F /* BMDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMDetailViewController.swift; sourceTree = "<group>"; };
 		B6A0E40A1AE9A5BC00DBC66F /* BMButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMButton.swift; sourceTree = "<group>"; };
-		B6A0E40C1AE9A71E00DBC66F /* crossIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crossIcon.png; sourceTree = "<group>"; };
+		B6A0E40C1AE9A71E00DBC66F /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		B6A0E40E1AE9AE5A00DBC66F /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		B6A0E4121AE9B5F600DBC66F /* traveling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = traveling.png; sourceTree = "<group>"; };
 		B6A0E4141AE9B7BF00DBC66F /* coding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coding.png; sourceTree = "<group>"; };
@@ -55,6 +58,9 @@
 		B6A0E41A1AE9C02E00DBC66F /* guitar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guitar.png; sourceTree = "<group>"; };
 		B6A0E41C1AE9C03200DBC66F /* golfing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = golfing.png; sourceTree = "<group>"; };
 		B6A0E4201AE9C27300DBC66F /* handball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handball.png; sourceTree = "<group>"; };
+		B6A0E4221AE9C8A300DBC66F /* BMLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMLabel.swift; sourceTree = "<group>"; };
+		B6A0E4281AE9D42B00DBC66F /* BMTableViewTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMTableViewTextCell.swift; sourceTree = "<group>"; };
+		B6A0E42C1AE9F85B00DBC66F /* BMTableViewPictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMTableViewPictureCell.swift; sourceTree = "<group>"; };
 		B6B19BE11ADD84E7006FDE40 /* Bastian Morath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bastian Morath.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6B19BE51ADD84E7006FDE40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6B19BE61ADD84E7006FDE40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,8 +130,11 @@
 				B6B19BE81ADD84E7006FDE40 /* ViewController.swift */,
 				B6A0E4081AE995BD00DBC66F /* BMDetailViewController.swift */,
 				B674CEBE1AE83B09002B6D23 /* Factory.swift */,
+				B6A0E4221AE9C8A300DBC66F /* BMLabel.swift */,
 				B6A0E40A1AE9A5BC00DBC66F /* BMButton.swift */,
 				B6B19BEA1ADD84E7006FDE40 /* Main.storyboard */,
+				B6A0E4281AE9D42B00DBC66F /* BMTableViewTextCell.swift */,
+				B6A0E42C1AE9F85B00DBC66F /* BMTableViewPictureCell.swift */,
 				B6B19BED1ADD84E7006FDE40 /* Images.xcassets */,
 				B6B19BEF1ADD84E7006FDE40 /* LaunchScreen.xib */,
 				B6B19BE41ADD84E7006FDE40 /* Supporting Files */,
@@ -136,7 +145,7 @@
 		B6B19BE41ADD84E7006FDE40 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B6A0E40C1AE9A71E00DBC66F /* crossIcon.png */,
+				B6A0E40C1AE9A71E00DBC66F /* cross.png */,
 				B6A0E4141AE9B7BF00DBC66F /* coding.png */,
 				B6A0E41C1AE9C03200DBC66F /* golfing.png */,
 				B6A0E4201AE9C27300DBC66F /* handball.png */,
@@ -252,7 +261,7 @@
 				B6B19BEC1ADD84E7006FDE40 /* Main.storyboard in Resources */,
 				B6A0E41B1AE9C02E00DBC66F /* guitar.png in Resources */,
 				B6A0E4211AE9C27300DBC66F /* handball.png in Resources */,
-				B6A0E40D1AE9A71E00DBC66F /* crossIcon.png in Resources */,
+				B6A0E40D1AE9A71E00DBC66F /* cross.png in Resources */,
 				B6A0E40F1AE9AE5A00DBC66F /* about.png in Resources */,
 				B655DD471AE0821700E70EFF /* profileImage.jpg in Resources */,
 				B6A0E41D1AE9C03200DBC66F /* golfing.png in Resources */,
@@ -279,11 +288,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6B19C071ADD8621006FDE40 /* CollectionViewCell.swift in Sources */,
+				B6A0E4231AE9C8A300DBC66F /* BMLabel.swift in Sources */,
 				B6A0E4091AE995BD00DBC66F /* BMDetailViewController.swift in Sources */,
 				B6B19BE91ADD84E7006FDE40 /* ViewController.swift in Sources */,
+				B6A0E42D1AE9F85B00DBC66F /* BMTableViewPictureCell.swift in Sources */,
 				B674CEBF1AE83B09002B6D23 /* Factory.swift in Sources */,
 				B6A0E40B1AE9A5BC00DBC66F /* BMButton.swift in Sources */,
 				B6B19BE71ADD84E7006FDE40 /* AppDelegate.swift in Sources */,
+				B6A0E42A1AE9D42B00DBC66F /* BMTableViewTextCell.swift in Sources */,
 				B674CEBB1AE81883002B6D23 /* BMCollectionVC.swift in Sources */,
 				B6B19C091ADD8756006FDE40 /* BMCollectionViewLayout.swift in Sources */,
 			);
