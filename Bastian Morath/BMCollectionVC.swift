@@ -14,7 +14,6 @@ let array = [6,7,1,2,3,4,5,6,7,1,2]
 class BMCollectionVC: UICollectionViewController {
 
     var cellTapped = false
-    var expandingViewController = BMDetailViewController()
 
     func setup(){
         self.collectionView!.alpha = 0.5
@@ -64,23 +63,36 @@ class BMCollectionVC: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.scrollEnabled = false
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
 
 
         let kMargin: CGFloat = 10
         var endFrame = collectionView.convertRect(kPopUpFrame, fromView: self.view)
-        self.expandingViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("detailVC") as! BMDetailViewController
-        self.expandingViewController.topic = Factory.BMTopic(rawValue: (indexPath.row%7))
-        self.expandingViewController.cellFrame = cell!.frame
-        self.expandingViewController.view.frame = cell!.frame
-        self.addChildViewController(expandingViewController)
 
-        collectionView.addSubview(expandingViewController.view)
-        self.expandingViewController.didMoveToParentViewController(self)
+        var controller: BMPopUpBaseViewController!
+        let topic =  Factory.BMTopic(rawValue: (indexPath.row%7))
+        if !(topic == .About) && !(topic == .coding){
+
+            controller = BMHobbiesViewController()
+        } else if topic == .About{
+            controller = BMAboutMeViewController()
+
+
+        } else if topic == .coding {
+            controller = BMCodingViewController()
+        }
+        controller.cellFrame = cell.frame
+        controller.topic = topic
+
+        controller.view.frame = cell.frame
+        self.addChildViewController(controller)
+
+        collectionView.addSubview(controller.view)
+        controller.didMoveToParentViewController(self)
         UIView.animateWithDuration(kAnimationDuration, animations: { () -> Void in
-            self.expandingViewController.view.frame = endFrame
+            controller.view.frame = endFrame
             }, completion: { (Bool) -> Void in
-                self.expandingViewController.setup()
+                controller.setup()
         })
 
     }

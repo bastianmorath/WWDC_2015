@@ -14,7 +14,6 @@ class CollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.contentView.layer.cornerRadius = frame.width / 2.0
-        self.imageView = UIImageView()
         imageView.tintColor = UIColor.whiteColor()
         imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
     }

@@ -8,22 +8,33 @@
 
 import UIKit
 
-class BMDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var topic: Factory.BMTopic!
+    var imageShape: Factory.BMImageShape!
+
     var cellFrame: CGRect!
 
 
-    @IBOutlet weak var tableView: UITableView!
-    //var tableView: UITableView!
+    var tableView: UITableView!
 
     var label :BMLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+
         var frame = self.view.frame
         self.view.backgroundColor = Factory.colorForTopic(topic)
         self.view.layer.cornerRadius = cellFrame.width / 2
         self.view.layer.masksToBounds = true
+
+        self.tableView = UITableView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height), style: .Plain)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        tableView.backgroundColor = .clearColor()
+        self.tableView.registerNib(UINib(nibName: "BMPictureTableViewCell", bundle: nil), forCellReuseIdentifier: "pictureCell")
+        self.tableView.registerNib(UINib(nibName: "BMTextTableViewCell", bundle: nil), forCellReuseIdentifier: "textCell")
+
+        self.view.addSubview(self.tableView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,16 +79,14 @@ class BMDetailViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
         switch indexPath.row {
         case 0:
-            var cell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell") as! BMTableViewPictureCell
+            var cell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell") as! BMPictureTableViewCell
+            cell.imageShape = self.imageShape
             cell.configureWithTopic(self.topic)
-            println(cell.pictureImageView.frame )
-
             return cell
         case 1:
-            var cell = self.tableView.dequeueReusableCellWithIdentifier("textCell") as! BMTableViewTextCell
+            var cell = self.tableView.dequeueReusableCellWithIdentifier("textCell") as! BMTextTableViewCell
             cell.label.text =  BMStrings.aboutMyselfString
 
             return cell
