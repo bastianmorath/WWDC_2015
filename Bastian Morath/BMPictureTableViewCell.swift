@@ -7,13 +7,12 @@
 //
 
 import UIKit
-
+import MediaPlayer
 class BMPictureTableViewCell: UITableViewCell {
 
     var imageShape: Factory.BMImageShape!
 
     @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var pictureView: UIView!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -32,17 +31,38 @@ class BMPictureTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        //if imageShape?.rawValue == Factory.BMImageShape.Round.rawValue{
-        iconView.layer.cornerRadius = iconView.frame.width / 2
-        iconView.clipsToBounds = true
-        //}
+            }
+
+    func configureWithGeneralTopic(topic: Factory.BMTopic){
+        if imageShape?.rawValue == Factory.BMImageShape.Round.rawValue{
+            iconView.layer.cornerRadius = iconView.frame.width / 2
+            iconView.setTranslatesAutoresizingMaskIntoConstraints( false )
+            iconView.clipsToBounds = true
+        }
+
+        var image = Factory.imageForGeneralTopic(topic)
+        iconView.image = image
+        iconView.layer.cornerRadius = (iconView.layer.frame.width + 100 ) / 2
+
+//        let filePath = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource("guitarPlaying", ofType: "mp4")!)
+//        var moviePlayerController = MPMoviePlayerController(contentURL: filePath!)
+//        moviePlayerController.repeatMode = .One
+//        moviePlayerController.view.frame = self.contentView.frame
+//        moviePlayerController.prepareToPlay()
+//        moviePlayerController.scalingMode = .AspectFill
+//
+//        self.contentView.addSubview(moviePlayerController.view)
     }
 
-    func configureWithTopic(topic: Factory.BMTopic){
-        var image = Factory.imageForTopic(topic)
+    func configureWithCodingTopic(topic: Factory.BMCodingProject){
+        if imageShape?.rawValue == Factory.BMImageShape.Round.rawValue{
+            iconView.layer.cornerRadius = iconView.frame.width / 2
+            iconView.setTranslatesAutoresizingMaskIntoConstraints( false )
+            iconView.clipsToBounds = true
+        }
+
+        var image = Factory.imageForCodingTopic(topic)
         iconView.image = image
-        //iconView.layer.backgroundColor = UIColor.greenColor().CGColor
-        iconView.setTranslatesAutoresizingMaskIntoConstraints( false )
-       // pictureView.addSubview(pictureImageView)
+        iconView.layer.cornerRadius = (iconView.layer.frame.width + 100 ) / 2
     }
 }

@@ -13,7 +13,12 @@ let array = [6,7,1,2,3,4,5,6,7,1,2]
 
 class BMCollectionVC: UICollectionViewController {
 
-    var cellTapped = false
+
+
+    //var cellTapped = false
+
+
+    var delegate:popUpViewDelegate!
 
     func setup(){
         self.collectionView!.alpha = 0.5
@@ -63,6 +68,7 @@ class BMCollectionVC: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.scrollEnabled = false
+        delegate.popUpViewAdded()
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
 
 
@@ -84,16 +90,20 @@ class BMCollectionVC: UICollectionViewController {
         controller.cellFrame = cell.frame
         controller.topic = topic
 
+        controller.delegate = self.delegate!
+
         controller.view.frame = cell.frame
         self.addChildViewController(controller)
 
         collectionView.addSubview(controller.view)
         controller.didMoveToParentViewController(self)
-        UIView.animateWithDuration(kAnimationDuration, animations: { () -> Void in
+
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .CurveEaseInOut, animations: { () -> Void in
             controller.view.frame = endFrame
-            }, completion: { (Bool) -> Void in
-                controller.setup()
-        })
+            controller.setup()
+
+        }) { (Bool) -> Void in
+        }
 
     }
 }

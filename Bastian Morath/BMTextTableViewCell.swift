@@ -30,11 +30,19 @@ class BMTextTableViewCell: UITableViewCell {
         // Initialization code
 
         self.backgroundColor = .clearColor()
-        //label = UILabel(frame: CGRectMake(0, 0, 100, 100))
-        label.font = Factory.systemFontWithSize(15)
+        label.font = Factory.systemFontWithSize(kDefaultFontSize)
         label.setTranslatesAutoresizingMaskIntoConstraints( false )
-        
     }
 
-    
+    func configureWithGeneralTopic(topic: Factory.BMTopic){
+        self.label.text = Factory.descriptionStringForTopic(topic)
+    }
+
+    func configureWithCodingTopic(topic: Factory.BMCodingProject){
+        self.label.text = Factory.descriptionStringForCodingTopic(topic)
+        println("labelFrame: \(self.label.frame)")
+        println("cellFrame: \(self.contentView.frame)")
+
+    }
+
 }

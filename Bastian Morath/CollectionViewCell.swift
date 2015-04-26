@@ -35,12 +35,12 @@ class CollectionViewCell: UICollectionViewCell {
             image = UIImage(named: "coding")
         case .traveling:
             image = UIImage(named: "traveling")
-        case .handball:
-            image = UIImage(named: "handball")
+        case .sports:
+            image = UIImage(named: "sports")
         case .guitar:
             image = UIImage(named: "guitar")
-        case .golfing:
-            image = UIImage(named: "golfing")
+        case .photography:
+            image = UIImage(named: "photography")
         default:
             image = nil
     }

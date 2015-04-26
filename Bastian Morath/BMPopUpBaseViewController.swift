@@ -15,10 +15,11 @@ class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableV
 
     var cellFrame: CGRect!
 
+    var delegate:popUpViewDelegate!
+
 
     var tableView: UITableView!
 
-    var label :BMLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,13 +28,14 @@ class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableV
         self.view.layer.cornerRadius = cellFrame.width / 2
         self.view.layer.masksToBounds = true
 
-        self.tableView = UITableView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height), style: .Plain)
+        self.tableView = UITableView(frame: CGRectMake(0, 0, kPopUpFrame.width, kPopUpFrame.height), style: .Plain)
+        self.tableView.backgroundColor = .clearColor()
+        self.tableView.separatorStyle = .None
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        tableView.backgroundColor = .clearColor()
         self.tableView.registerNib(UINib(nibName: "BMPictureTableViewCell", bundle: nil), forCellReuseIdentifier: "pictureCell")
         self.tableView.registerNib(UINib(nibName: "BMTextTableViewCell", bundle: nil), forCellReuseIdentifier: "textCell")
-
+        println("popUpFrame: \(self.view.frame)")
         self.view.addSubview(self.tableView)
     }
 
@@ -52,12 +54,15 @@ class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableV
 
 
     func closePressed(){
+        self.delegate.popUpViewDismissed()
         UIView.animateWithDuration(kAnimationDuration, animations: { () -> Void in
             self.view.frame =   self.cellFrame
+            self.tableView.layer.anchorPoint = CGPointMake(0.4, 0.6)
+
+           // self.tableView.contentInset = UIEdgeInsetsMake(-self.cellFrame.origin.y, -self.cellFrame.origin.x, 0, 0)
             }, completion: { (Bool) -> Void in
                 self.view.removeFromSuperview()
                 let parentVC = self.parentViewController as! BMCollectionVC
-                parentVC.cellTapped = false
                 parentVC.collectionView?.scrollEnabled = true
                 self.removeFromParentViewController()
         })
@@ -65,14 +70,14 @@ class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
      func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 0
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.row{
         case 0:
             return UIScreen.mainScreen().bounds.width/2 + 100
         case 1:
-            return 200
+            return Factory.heightForString(Factory.descriptionStringForTopic(self.topic))
         default:
             return 100
         }
@@ -83,11 +88,11 @@ class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableV
         case 0:
             var cell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell") as! BMPictureTableViewCell
             cell.imageShape = self.imageShape
-            cell.configureWithTopic(self.topic)
+            cell.configureWithGeneralTopic(self.topic)
             return cell
         case 1:
             var cell = self.tableView.dequeueReusableCellWithIdentifier("textCell") as! BMTextTableViewCell
-            cell.label.text =  BMStrings.aboutMyselfString
+            cell.configureWithGeneralTopic(self.topic)
 
             return cell
         default:

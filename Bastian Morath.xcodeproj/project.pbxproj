@@ -45,6 +45,13 @@
 		B6B19BFD1ADD84E7006FDE40 /* Bastian_MorathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B19BFC1ADD84E7006FDE40 /* Bastian_MorathTests.swift */; };
 		B6B19C071ADD8621006FDE40 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B19C061ADD8621006FDE40 /* CollectionViewCell.swift */; };
 		B6B19C091ADD8756006FDE40 /* BMCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B19C081ADD8756006FDE40 /* BMCollectionViewLayout.swift */; };
+		B6FB5AF11AEC4452001926D4 /* BMCodingTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FB5AF01AEC4451001926D4 /* BMCodingTopicViewController.swift */; };
+		B6FB5AF31AEC4ECD001926D4 /* guitarPlaying.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B6FB5AF21AEC4D8F001926D4 /* guitarPlaying.mp4 */; };
+		B6FB5AF51AEC8075001926D4 /* sports.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FB5AF41AEC8075001926D4 /* sports.png */; };
+		B6FB5AF71AEC80C2001926D4 /* sportsx2.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FB5AF61AEC80C2001926D4 /* sportsx2.png */; };
+		B6FB5AF91AEC80CB001926D4 /* photographyx2.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FB5AF81AEC80CB001926D4 /* photographyx2.png */; };
+		B6FB5AFB1AEC80CF001926D4 /* photography.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FB5AFA1AEC80CF001926D4 /* photography.png */; };
+		B6FB5AFD1AEC91A7001926D4 /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FB5AFC1AEC91A7001926D4 /* rightArrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +107,13 @@
 		B6B19BFC1ADD84E7006FDE40 /* Bastian_MorathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bastian_MorathTests.swift; sourceTree = "<group>"; };
 		B6B19C061ADD8621006FDE40 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		B6B19C081ADD8756006FDE40 /* BMCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMCollectionViewLayout.swift; sourceTree = "<group>"; };
+		B6FB5AF01AEC4451001926D4 /* BMCodingTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMCodingTopicViewController.swift; sourceTree = "<group>"; };
+		B6FB5AF21AEC4D8F001926D4 /* guitarPlaying.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitarPlaying.mp4; sourceTree = "<group>"; };
+		B6FB5AF41AEC8075001926D4 /* sports.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sports.png; sourceTree = "<group>"; };
+		B6FB5AF61AEC80C2001926D4 /* sportsx2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sportsx2.png; sourceTree = "<group>"; };
+		B6FB5AF81AEC80CB001926D4 /* photographyx2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photographyx2.png; sourceTree = "<group>"; };
+		B6FB5AFA1AEC80CF001926D4 /* photography.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photography.png; sourceTree = "<group>"; };
+		B6FB5AFC1AEC91A7001926D4 /* rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightArrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +163,7 @@
 				B6A0E44C1AEAA75F00DBC66F /* BMAboutMeViewController.swift */,
 				B6A0E44E1AEAA87C00DBC66F /* BMHobbiesViewController.swift */,
 				B6A0E44A1AEA27B800DBC66F /* BMCodingViewController.swift */,
+				B6FB5AF01AEC4451001926D4 /* BMCodingTopicViewController.swift */,
 				B61B9FD21AEC1A6E002B2E23 /* BMPictureTableViewCell.swift */,
 				B61B9FCB1AEC1600002B2E23 /* BMPictureTableViewCell.xib */,
 				B61B9FCE1AEC1946002B2E23 /* BMTextTableViewCell.swift */,
@@ -195,8 +210,14 @@
 			isa = PBXGroup;
 			children = (
 				B6A0E40C1AE9A71E00DBC66F /* cross.png */,
+				B6FB5AF21AEC4D8F001926D4 /* guitarPlaying.mp4 */,
 				B6A0E4431AEA1FED00DBC66F /* traveling.png */,
+				B6FB5AFC1AEC91A7001926D4 /* rightArrow.png */,
 				B6A0E4411AEA1FB000DBC66F /* travelingx2.png */,
+				B6FB5AF41AEC8075001926D4 /* sports.png */,
+				B6FB5AFA1AEC80CF001926D4 /* photography.png */,
+				B6FB5AF61AEC80C2001926D4 /* sportsx2.png */,
+				B6FB5AF81AEC80CB001926D4 /* photographyx2.png */,
 				B6A0E4141AE9B7BF00DBC66F /* coding.png */,
 				B6A0E4501AEAAFD000DBC66F /* codingx2.png */,
 				B6A0E41C1AE9C03200DBC66F /* golfing.png */,
@@ -312,11 +333,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6FB5AF31AEC4ECD001926D4 /* guitarPlaying.mp4 in Resources */,
 				B6B19BEC1ADD84E7006FDE40 /* Main.storyboard in Resources */,
 				B6A0E4591AEAB0B300DBC66F /* guitarx2.png in Resources */,
 				B6A0E41B1AE9C02E00DBC66F /* guitar.png in Resources */,
+				B6FB5AFB1AEC80CF001926D4 /* photography.png in Resources */,
 				B6A0E4551AEAB04D00DBC66F /* handballx2.png in Resources */,
 				B6A0E4361AEA184000DBC66F /* travelingImage.jpg in Resources */,
+				B6FB5AF91AEC80CB001926D4 /* photographyx2.png in Resources */,
+				B6FB5AF71AEC80C2001926D4 /* sportsx2.png in Resources */,
 				B6A0E4211AE9C27300DBC66F /* handball.png in Resources */,
 				B6A0E4511AEAAFD000DBC66F /* codingx2.png in Resources */,
 				B6A0E40D1AE9A71E00DBC66F /* cross.png in Resources */,
@@ -325,7 +350,9 @@
 				B6A0E41D1AE9C03200DBC66F /* golfing.png in Resources */,
 				B6A0E4571AEAB0AD00DBC66F /* educationx2.png in Resources */,
 				B6A0E4421AEA1FB000DBC66F /* travelingx2.png in Resources */,
+				B6FB5AF51AEC8075001926D4 /* sports.png in Resources */,
 				B6A0E4531AEAAFFE00DBC66F /* golfingx2.png in Resources */,
+				B6FB5AFD1AEC91A7001926D4 /* rightArrow.png in Resources */,
 				B6A0E4151AE9B7BF00DBC66F /* coding.png in Resources */,
 				B6B19BF11ADD84E7006FDE40 /* LaunchScreen.xib in Resources */,
 				B6A0E4191AE9C02A00DBC66F /* education.png in Resources */,
@@ -356,6 +383,7 @@
 				B6A0E42F1AEA0AED00DBC66F /* BMFile.swift in Sources */,
 				B6A0E4091AE995BD00DBC66F /* BMPopUpBaseViewController.swift in Sources */,
 				B61B9FD31AEC1A6E002B2E23 /* BMPictureTableViewCell.swift in Sources */,
+				B6FB5AF11AEC4452001926D4 /* BMCodingTopicViewController.swift in Sources */,
 				B6A0E4341AEA11DD00DBC66F /* BMStrings.swift in Sources */,
 				B6B19BE91ADD84E7006FDE40 /* ViewController.swift in Sources */,
 				B674CEBF1AE83B09002B6D23 /* Factory.swift in Sources */,

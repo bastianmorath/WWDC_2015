@@ -9,7 +9,7 @@
 import UIKit
 
 let kSize = 25 as CGFloat
-
+let margin = 30 as CGFloat
 class BMButton: UIButton {
 
 
@@ -27,8 +27,7 @@ class BMButton: UIButton {
     }
 
     convenience init(type: BMButtonType){
-        self.init(frame: CGRectMake(0,0,kSize,kSize))
-        self.layer.cornerRadius = CGFloat(kSize / 2)
+        self.init(frame: CGRectMake(0,0,kSize + margin,kSize + margin))
         self.setTranslatesAutoresizingMaskIntoConstraints( false )
         self.showsTouchWhenHighlighted = false
         var imageView = UIImageView(frame: CGRectMake(0, 0, kSize, kSize))
@@ -40,7 +39,6 @@ class BMButton: UIButton {
             imageView.image = UIImage()
         }
         imageView.image = imageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-
         self.addSubview(imageView)
 
     }
@@ -68,8 +66,5 @@ class BMButton: UIButton {
 
             superView!.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat(horizontalConstraint, options: nil, metrics: metrics, views: views ) )
             superView!.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat(verticalConstraint, options: nil, metrics: metrics, views: views ) )
-
-
-
     }
 }

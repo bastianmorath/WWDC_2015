@@ -8,12 +8,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+// Protocol, um vom TableVC die Nachricht zu bekommen, wenn eine cell gedrückt wurde
+protocol popUpViewDelegate {
+    func popUpViewAdded()
+    func popUpViewDismissed()
+}
+
+class ViewController: UIViewController, popUpViewDelegate {
+
     var backgroundLayer: CAGradientLayer!
 
-    @IBOutlet weak var nameLabel: UILabel!
+    var nameLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameLabel = BMLabel(frame: CGRectMake(0, 0, 200, 50))
+        nameLabel.center = CGPointMake(self.view.frame.width / 2, 50)
+        nameLabel.text = "Bastian Morath"
+        self.view.addSubview(self.nameLabel)
 
         self.setupBackground()
         self.setupCollectionViewController()
@@ -45,11 +57,12 @@ class ViewController: UIViewController {
         collectionViewController.collectionView = UICollectionView(frame:self.view.frame , collectionViewLayout: BMCollectionViewLayout())
         collectionViewController.collectionView!.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionViewController.setup()
-
+        collectionViewController.delegate = self
         self.addChildViewController(collectionViewController)
         self.view.addSubview(collectionViewController.view)
 
         collectionViewController.didMoveToParentViewController(self)
+
     }
 
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -57,6 +70,23 @@ class ViewController: UIViewController {
 
     }
 
+    // remove nameLabel
+    func popUpViewAdded() {
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            var frame = self.nameLabel.frame
+            frame.origin.y -= 100
+            self.nameLabel.frame = frame
+
+        })
+    }
+
+    func popUpViewDismissed() {
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.nameLabel.center = CGPointMake(self.view.frame.width / 2, 50)
+        })
+
+    }
+    
 }
 
 

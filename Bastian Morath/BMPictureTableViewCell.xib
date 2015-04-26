@@ -8,37 +8,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pictureCell" rowHeight="164" id="KGk-i7-Jjw" customClass="BMPictureTableViewCell" customModule="Bastian_Morath" customModuleProvider="target">
+        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="pictureCell" rowHeight="164" id="KGk-i7-Jjw" customClass="BMPictureTableViewCell" customModule="Bastian_Morath" customModuleProvider="target">
             <rect key="frame" x="0.0" y="1" width="352" height="164"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXs-BM-b4K">
-                        <rect key="frame" x="118" y="23" width="117" height="117"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3io-ir-Asa">
-                                <rect key="frame" x="10" y="10" width="97" height="97"/>
-                                <color key="tintColor" red="0.99849123679999996" green="0.99849123679999996" blue="0.99849123679999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="3io-ir-Asa" secondAttribute="height" multiplier="1:1" id="62M-DS-EKd"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3io-ir-Asa">
+                        <rect key="frame" x="122" y="28" width="107" height="107"/>
+                        <color key="tintColor" red="0.99849123679999996" green="0.99849123679999996" blue="0.99849123679999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="3io-ir-Asa" secondAttribute="centerX" id="5RH-t7-0nf"/>
-                            <constraint firstAttribute="centerY" secondItem="3io-ir-Asa" secondAttribute="centerY" id="ce1-9T-LQH"/>
-                            <constraint firstItem="3io-ir-Asa" firstAttribute="top" secondItem="pXs-BM-b4K" secondAttribute="top" constant="10" id="hVU-nO-WCG"/>
-                            <constraint firstAttribute="width" secondItem="pXs-BM-b4K" secondAttribute="height" multiplier="1:1" id="nDb-uQ-a2F"/>
+                            <constraint firstAttribute="width" secondItem="3io-ir-Asa" secondAttribute="height" multiplier="1:1" id="62M-DS-EKd"/>
                         </constraints>
-                    </view>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="centerX" secondItem="pXs-BM-b4K" secondAttribute="centerX" id="LPB-H8-zR8"/>
-                    <constraint firstItem="pXs-BM-b4K" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="Na8-C2-dUi"/>
-                    <constraint firstAttribute="centerY" secondItem="pXs-BM-b4K" secondAttribute="centerY" id="QoO-v3-9zk"/>
+                    <constraint firstItem="3io-ir-Asa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="68F-4E-34I"/>
+                    <constraint firstAttribute="centerY" secondItem="3io-ir-Asa" secondAttribute="centerY" id="oXU-R0-8AL"/>
+                    <constraint firstAttribute="centerX" secondItem="3io-ir-Asa" secondAttribute="centerX" id="xLE-MH-V9Q"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

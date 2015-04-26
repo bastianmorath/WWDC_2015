@@ -11,6 +11,7 @@ import UIKit
 let kAnimationDuration = 0.2
 let kPopUpFrame: CGRect = CGRectMake(kMargin, kMargin, UIScreen.mainScreen().bounds.width - 2 * kMargin, UIScreen.mainScreen().bounds.height - 2 * kMargin)
 let kMargin = 10 as CGFloat
+let kDefaultFontSize = 15 as CGFloat
 class Factory{
 
 
@@ -33,9 +34,24 @@ class Factory{
         case education
         case coding
         case traveling
-        case handball
+        case sports
         case guitar
-        case golfing
+        case photography
+    }
+
+    enum BMImageShape: Int {
+        case Round
+        case Angular
+    }
+
+    enum BMCodingProject: Int {
+        case General
+        case MyMarks
+        case Antum
+        case MINT
+        case Loci
+
+        static var count: Int { return BMCodingProject.Loci.hashValue + 1}
     }
 
     class func descriptionStringForTopic(topic: BMTopic) -> String{
@@ -46,12 +62,12 @@ class Factory{
             return BMStrings.codingString
         case .education:
             return BMStrings.educationString
-        case .golfing:
-            return BMStrings.golfingString
+        case .sports:
+            return BMStrings.sportsString
         case .guitar:
             return BMStrings.guitarString
-        case .handball:
-            return BMStrings.handballString
+        case .photography:
+            return BMStrings.photographyString
         case .traveling:
             return BMStrings.travelingString
         default:
@@ -59,7 +75,37 @@ class Factory{
         }
     }
 
-    class func imageForTopic(topic: BMTopic) -> UIImage{
+
+    class func descriptionStringForCodingTopic(topic: BMCodingProject) -> String{
+        switch topic{
+        case .General:
+            return BMStrings.codingString
+        case .MyMarks:
+            return BMStrings.myMarksString
+        case .Antum:
+            return BMStrings.antumString
+        case .Loci:
+            return BMStrings.lociString
+        case .MINT:
+            return BMStrings.mintString
+        default:
+            return ""
+        }
+    }
+
+    class func heightForString(string: String)-> CGFloat{
+        // -20 because of the margin of the label in the cell
+        let label:UILabel = UILabel(frame: CGRectMake(0, 0, screenWidth - 87, CGFloat.max))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.font = systemFontWithSize(kDefaultFontSize)
+        label.text = string
+        label.sizeToFit()
+        println("LabelHeight: \(label.frame.width)")
+        return label.frame.height + 50
+    }
+
+    class func imageForGeneralTopic(topic: BMTopic) -> UIImage{
         var image: UIImage!
 
         switch topic{
@@ -74,20 +120,45 @@ class Factory{
         case .traveling:
             image = UIImage(named: "travelingx2.png")
             image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        case .handball:
-            image = UIImage(named: "handballx2")
+        case .sports:
+            image = UIImage(named: "sports.png")
             image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         case .guitar:
             image = UIImage(named: "guitarx2")
             image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        case .golfing:
-            image = UIImage(named: "golfingx2")
+        case .photography:
+            image = UIImage(named: "photographyx2")
             image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         default:
             image = UIImage()
         }
-image = UIImage(named: "profileImage.jpg")
+        image = UIImage(named: "profileImage.jpg")
     return image
+    }
+
+    class func imageForCodingTopic(topic: BMCodingProject) -> UIImage{
+        var image: UIImage!
+        // TODO: Insert Right pictures
+        switch topic{
+        case .General:
+            image = UIImage(named: "profileImage.jpg")
+        case .MyMarks:
+            image = UIImage(named: "educationx2")
+            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        case .Antum:
+            image = UIImage(named: "codingx2")
+            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        case .Loci:
+            image = UIImage(named: "travelingx2.png")
+            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        case .MINT:
+            image = UIImage(named: "handballx2")
+            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        default:
+            image = UIImage()
+        }
+        image = UIImage(named: "profileImage.jpg")
+        return image
     }
 
     class func RBResizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
@@ -116,10 +187,6 @@ image = UIImage(named: "profileImage.jpg")
         return newImage
     }
 
-    enum BMImageShape: Int {
-        case Round
-        case angular
-    }
 
 
     class func colorForTopic(topic: BMTopic) -> UIColor{
@@ -132,36 +199,33 @@ image = UIImage(named: "profileImage.jpg")
             return UIColor(red: 0.3+0.3, green: 0.3-0.2, blue: 0.3-0.3, alpha: 1)
         case .traveling:
             return UIColor(red: 0.4+0.3, green: 0.4-0.2, blue: 0.4-0.3, alpha: 1)
-        case .handball:
+        case .sports:
             return UIColor(red: 0.5+0.3, green: 0.5-0.2, blue: 0.5-0.3, alpha: 1)
         case .guitar:
             return UIColor(red: 0.6+0.3, green: 0.6-0.2, blue: 0.6-0.3, alpha: 1)
-        case .golfing:
+        case .photography:
             return UIColor(red: 0.7+0.3, green: 0.7-0.2, blue: 0.7-0.3, alpha: 1)
         default:
             return UIColor(red: 0.0, green: 0.0, blue:0.0, alpha: 1)
         }
     }
 
-    class func colorForIndexPath(indexPath: NSIndexPath) -> UIColor{
-        let modIndex = indexPath.row % 4
-        println(modIndex)
-        switch modIndex {
-        case 0:
-            return UIColor(red: 0.6+0.3, green: 0.6-0.2, blue: 0.6-0.3, alpha: 1)
-        case 1:
-            return UIColor(red: 0.2+0.3, green: 0.2-0.2, blue: 0.2-0.3, alpha: 1)
-        case 2:
-            return UIColor(red: 0.8+0.3, green: 0.8-0.2, blue: 0.8-0.3, alpha: 1)
-        case 3:
-            return UIColor(red: 0.4+0.3, green: 0.4-0.2, blue: 0.4-0.3, alpha: 1)
-        default:
-            return UIColor(red: 0.4+0.3, green: 0.4-0.2, blue: 0.4-0.3, alpha: 1)
+    class func systemFontWithSize(size: CGFloat) -> UIFont{
+        return UIFont(name: "HelveticaNeue-Light", size: size)!
+    }
+
+    /// Höhe des Screens
+    static  var screenHeight:CGFloat {
+        get{
+            return UIScreen.mainScreen().bounds.height
         }
     }
 
-    class func systemFontWithSize(size: CGFloat) -> UIFont{
-        return UIFont(name: "HelveticaNeue-Light", size: size)!
+    /// Breite des Screens
+    static  var screenWidth:CGFloat {
+        get{
+            return UIScreen.mainScreen().bounds.width
+        }
     }
 
 }
