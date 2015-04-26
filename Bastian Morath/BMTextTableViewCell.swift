@@ -28,8 +28,6 @@ class BMTextTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-
-        self.backgroundColor = .clearColor()
         label.font = Factory.systemFontWithSize(kDefaultFontSize)
         label.setTranslatesAutoresizingMaskIntoConstraints( false )
     }
@@ -40,8 +38,6 @@ class BMTextTableViewCell: UITableViewCell {
 
     func configureWithCodingTopic(topic: Factory.BMCodingProject){
         self.label.text = Factory.descriptionStringForCodingTopic(topic)
-        println("labelFrame: \(self.label.frame)")
-        println("cellFrame: \(self.contentView.frame)")
 
     }
 

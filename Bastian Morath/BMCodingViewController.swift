@@ -29,9 +29,6 @@ class BMCodingViewController: BMPopUpBaseViewController, UIPageViewControllerDel
         self.addChildViewController(pageViewController)
         self.view.addSubview(self.pageViewController.view)
 
-        var pageControl = UIPageControl.appearance()
-        pageControl.pageIndicatorTintColor = .whiteColor()
-        pageControl.currentPageIndicatorTintColor = .whiteColor()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,13 +47,14 @@ class BMCodingViewController: BMPopUpBaseViewController, UIPageViewControllerDel
     }
 
     private func viewControllerForPage(page: Int) -> UIViewController? {
+
         if page >= 0 && page < Factory.BMCodingProject.count-1{
             if let controller = cache.objectForKey(page) as? UIViewController {
                 //return controller
             }
-println(self.page % 4)
+            println("Page: \(self.page % 5)")
             var controller = BMCodingTopicViewController()
-            controller.project = Factory.BMCodingProject(rawValue: (self.page % 4))
+            controller.project = Factory.BMCodingProject(rawValue: (self.page % 5))
             cache.setObject(controller, forKey: page)
             return controller
         }

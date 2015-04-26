@@ -101,7 +101,6 @@ class Factory{
         label.font = systemFontWithSize(kDefaultFontSize)
         label.text = string
         label.sizeToFit()
-        println("LabelHeight: \(label.frame.width)")
         return label.frame.height + 50
     }
 

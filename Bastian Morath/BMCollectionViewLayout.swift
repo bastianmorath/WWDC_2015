@@ -43,7 +43,7 @@ class BMCollectionViewLayout: UICollectionViewFlowLayout, UICollectionViewDelega
         return 2.5 * self.cViewSize.height
     }
 
-    let c: CGFloat = 20
+    let c: CGFloat = 23
 
     override init() {
         super.init()

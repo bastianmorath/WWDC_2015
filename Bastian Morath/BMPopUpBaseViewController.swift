@@ -35,7 +35,6 @@ class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableV
         self.tableView.dataSource = self
         self.tableView.registerNib(UINib(nibName: "BMPictureTableViewCell", bundle: nil), forCellReuseIdentifier: "pictureCell")
         self.tableView.registerNib(UINib(nibName: "BMTextTableViewCell", bundle: nil), forCellReuseIdentifier: "textCell")
-        println("popUpFrame: \(self.view.frame)")
         self.view.addSubview(self.tableView)
     }
 
