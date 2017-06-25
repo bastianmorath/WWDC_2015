@@ -8,29 +8,34 @@
 
 import UIKit
 
-let kAnimationDuration = 0.2
-let kPopUpFrame: CGRect = CGRectMake(kMargin, kMargin, UIScreen.mainScreen().bounds.width - 2 * kMargin, UIScreen.mainScreen().bounds.height - 2 * kMargin)
+
+// This Factory class provides some useful methods and enums to lay out some code from the 
+
+// Defines the frame of the PopUpBaseView that pops up when a cell is pressed
+let kPopUpFrame: CGRect = CGRect(x: kMargin, y: kMargin, width: UIScreen.main.bounds.width - 2 * kMargin, height: UIScreen.main.bounds.height - 2 * kMargin)
+// Default margin
 let kMargin = 10 as CGFloat
 let kDefaultFontSize = 15 as CGFloat
+let kIPhone5CornerRadius = 100 as CGFloat
+let kIPhone6CornerRadius = 115 as CGFloat
+
 class Factory{
 
-
-    /// Creates a background gradient
-
+    /// Returns a background gradient
     class func colorGradient() -> CAGradientLayer {
-        let colorTop =    UIColor(red:12/255.0, green:58/255.0, blue:97/255.0, alpha:1).CGColor
-        let colorBottom = UIColor(red:165/255.0, green:51/255.0, blue:20/255.0, alpha:1).CGColor
+        let colorTop =    UIColor(red:12/255.0, green:58/255.0, blue:97/255.0, alpha:1).cgColor
+        let colorBottom = UIColor(red:165/255.0, green:51/255.0, blue:20/255.0, alpha:1).cgColor
         
-        var gl = CAGradientLayer()
+        let gl = CAGradientLayer()
         gl.colors = [colorTop, colorBottom]
         gl.locations = [ 0.0, 0.7,0.8,1.0]
         return gl
     }
 
-    /**
-    */
+
+    // Every cell is assigned to a BMTopic
     enum BMTopic: Int {
-        case About
+        case about
         case education
         case coding
         case traveling
@@ -39,24 +44,27 @@ class Factory{
         case photography
     }
 
+    // An Image is either round or Angular
     enum BMImageShape: Int {
-        case Round
-        case Angular
+        case round
+        case angular
     }
 
+    // Every coding view in the BMCodingViewController is assigned to a BMCodingProject
     enum BMCodingProject: Int {
-        case General
-        case MyMarks
-        case Antum
-        case MINT
-        case Loci
+        case general
+        case myMarks
+        case antum
+        case mint
+        case loci
 
-        static var count: Int { return BMCodingProject.Loci.hashValue + 1}
+        static var count: Int { return BMCodingProject.loci.hashValue + 1}
     }
 
-    class func descriptionStringForTopic(topic: BMTopic) -> String{
+    // Returns the description for the different Topics
+    class func descriptionStringForTopic(_ topic: BMTopic) -> String{
         switch topic{
-        case .About:
+        case .about:
             return BMStrings.aboutMyselfString
         case .coding:
             return BMStrings.codingString
@@ -75,122 +83,132 @@ class Factory{
         }
     }
 
-
-    class func descriptionStringForCodingTopic(topic: BMCodingProject) -> String{
+    // Returns the description for the different Coding topics
+    class func descriptionStringForCodingTopic(_ topic: BMCodingProject) -> String{
         switch topic{
-        case .General:
+        case .general:
             return BMStrings.codingString
-        case .MyMarks:
+        case .myMarks:
             return BMStrings.myMarksString
-        case .Antum:
+        case .antum:
             return BMStrings.antumString
-        case .Loci:
+        case .loci:
             return BMStrings.lociString
-        case .MINT:
+        case .mint:
             return BMStrings.mintString
         default:
             return ""
         }
     }
 
-    class func heightForString(string: String)-> CGFloat{
-        // -20 because of the margin of the label in the cell
-        let label:UILabel = UILabel(frame: CGRectMake(0, 0, screenWidth - 87, CGFloat.max))
+    // This method calculates the color for the white textColor based on the background (The eye perceives the same color on different backgrounds differently!)
+    class func whiteColorForTopic(_ topic: Factory.BMTopic)-> UIColor{
+
+        var d = 0 as CGFloat
+
+        let color = Factory.colorForTopic(topic)
+        let myCIColor = CIColor(color: color)
+        let redComp = myCIColor.red
+        let greenComp = myCIColor.green
+        let blueComp = myCIColor.blue
+
+            // Counting the perceptive luminance - human eye favors green color...
+            let a = 1 - ( 0.299 * redComp + 0.587 * greenComp + 0.114 * blueComp)/255;
+
+        if (a < 0.5){
+            d = 0; // bright colors - black font
+
+        } else {
+            d = 255; // dark colors - white font
+
+        }
+        return UIColor(red: d, green: d, blue: d, alpha: 1)
+    }
+    
+    // Returns the height for a given string
+    class func heightForString(_ string: String)-> CGFloat{
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth - 87, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.font = systemFontWithSize(kDefaultFontSize)
         label.text = string
         label.sizeToFit()
         return label.frame.height + 50
     }
 
-    class func imageForGeneralTopic(topic: BMTopic) -> UIImage{
+    // return an image for a given BMTopic
+    class func imageForGeneralTopic(_ topic: BMTopic) -> UIImage{
         var image: UIImage!
-
         switch topic{
-        case .About:
+        case .about:
             image = UIImage(named: "profileImage.jpg")
         case .education:
-            image = UIImage(named: "educationx2")
-            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            image = UIImage(named: "education.jpeg")
         case .coding:
-            image = UIImage(named: "codingx2")
-            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            image = UIImage(named: "coding.png")
         case .traveling:
-            image = UIImage(named: "travelingx2.png")
-            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            image = UIImage(named: "traveling.jpg")
         case .sports:
-            image = UIImage(named: "sports.png")
-            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            image = UIImage(named: "handball.jpg")
         case .guitar:
-            image = UIImage(named: "guitarx2")
-            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            image = UIImage(named: "guitar.png")
         case .photography:
-            image = UIImage(named: "photographyx2")
-            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            image = UIImage(named: "photography.JPG")
         default:
             image = UIImage()
         }
-        image = UIImage(named: "profileImage.jpg")
     return image
     }
 
-    class func imageForCodingTopic(topic: BMCodingProject) -> UIImage{
+    // Returns an image for a coding topic
+    class func imageForCodingTopic(_ topic: BMCodingProject) -> UIImage{
         var image: UIImage!
-        // TODO: Insert Right pictures
         switch topic{
-        case .General:
-            image = UIImage(named: "profileImage.jpg")
-        case .MyMarks:
-            image = UIImage(named: "educationx2")
-            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        case .Antum:
-            image = UIImage(named: "codingx2")
-            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        case .Loci:
-            image = UIImage(named: "travelingx2.png")
-            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        case .MINT:
-            image = UIImage(named: "handballx2")
-            image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        case .general:
+            image = UIImage(named: "coding.png")
+        case .myMarks:
+            image = UIImage(named: "mymarks.png")
+        case .antum:
+            image = UIImage(named: "antum.png")
+        case .loci:
+            image = UIImage(named: "loci.jpg")
+        case .mint:
+            image = UIImage(named: "mint.jpeg")
         default:
             image = UIImage()
         }
-        image = UIImage(named: "profileImage.jpg")
+
+        if topic == .general{
+            image = RBResizeImage(image, targetSize: CGSize(width: 200, height: 200))
+        } else if topic == .mint{
+            image = RBResizeImage(image, targetSize: CGSize(width: 1.893 * 130, height: 130))
+        } else {
+            image = RBResizeImage(image, targetSize: CGSize(width: 150, height: 150 * 1.775))
+
+        }
         return image
     }
 
-    class func RBResizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
-        let size = image.size
+    class func cellHeightForTopic(_ topic: BMCodingProject) -> CGFloat{
+        return imageForCodingTopic(topic).size.height + 56
+    }
 
-        let widthRatio  = targetSize.width  / image.size.width
-        let heightRatio = targetSize.height / image.size.height
+    class func RBResizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
+        let hasAlpha = false
+        let scale: CGFloat = 0.0
 
-        // Figure out what our orientation is, and use that to form the rectangle
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
-        } else {
-            newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio)
-        }
+        UIGraphicsBeginImageContextWithOptions(targetSize, !hasAlpha, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: targetSize))
 
-        // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRectMake(0, 0, newSize.width, newSize.height)
-
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.drawInRect(rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage!
     }
 
 
 
-    class func colorForTopic(topic: BMTopic) -> UIColor{
+    class func colorForTopic(_ topic: BMTopic) -> UIColor{
         switch topic {
-        case .About:
+        case .about:
             return UIColor(red: 0.1+0.3, green: 0.1-0.2, blue: 0.1-0.3, alpha: 1)
         case .education:
             return UIColor(red: 0.2+0.3, green: 0.2-0.2, blue: 0.2-0.3, alpha: 1)
@@ -209,21 +227,20 @@ class Factory{
         }
     }
 
-    class func systemFontWithSize(size: CGFloat) -> UIFont{
+    class func systemFontWithSize(_ size: CGFloat) -> UIFont{
         return UIFont(name: "HelveticaNeue-Light", size: size)!
     }
 
-    /// Höhe des Screens
+
     static  var screenHeight:CGFloat {
         get{
-            return UIScreen.mainScreen().bounds.height
+            return UIScreen.main.bounds.height
         }
     }
 
-    /// Breite des Screens
     static  var screenWidth:CGFloat {
         get{
-            return UIScreen.mainScreen().bounds.width
+            return UIScreen.main.bounds.width
         }
     }
 

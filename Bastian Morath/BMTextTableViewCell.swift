@@ -8,6 +8,8 @@
 
 import UIKit
 
+// This UITableViewCell displays string in a label
+
 class BMTextTableViewCell: UITableViewCell {
 
     @IBOutlet weak var label: UILabel!
@@ -16,27 +18,27 @@ class BMTextTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
 
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         label.font = Factory.systemFontWithSize(kDefaultFontSize)
-        label.setTranslatesAutoresizingMaskIntoConstraints( false )
+        label.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    func configureWithGeneralTopic(topic: Factory.BMTopic){
+    func configureWithGeneralTopic(_ topic: Factory.BMTopic){
         self.label.text = Factory.descriptionStringForTopic(topic)
     }
 
-    func configureWithCodingTopic(topic: Factory.BMCodingProject){
+    func configureWithCodingTopic(_ topic: Factory.BMCodingProject){
         self.label.text = Factory.descriptionStringForCodingTopic(topic)
 
     }

@@ -8,24 +8,26 @@
 
 import UIKit
 
+// This class manages the controller for all BMTopic's except BMTopic.coding
 class BMHobbiesViewController: BMPopUpBaseViewController {
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            var cell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell") as! BMPictureTableViewCell
-            cell.imageShape = .Round
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "pictureCell") as! BMPictureTableViewCell
+
+            cell.imageShape = .round
             cell.configureWithGeneralTopic(self.topic)
             return cell
         case 1:
-            var cell = self.tableView.dequeueReusableCellWithIdentifier("textCell") as! BMTextTableViewCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "textCell") as! BMTextTableViewCell
             cell.configureWithGeneralTopic(self.topic)
-
+cell.label.textColor = Factory.whiteColorForTopic(self.topic)
             return cell
         default:
            return UITableViewCell()

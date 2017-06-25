@@ -8,8 +8,9 @@
 
 import UIKit
 
+// Custom UILabel subclass
 class BMLabel: UILabel {
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
         self.setup()
     }
@@ -27,11 +28,11 @@ class BMLabel: UILabel {
 
 
     func setup(){
-        self.backgroundColor = .clearColor()
+        self.backgroundColor = .clear
         self.numberOfLines = 0
-        self.textColor = .whiteColor()
+        self.textColor = .white
 
-        self.textAlignment = .Center
+        self.textAlignment = .center
         self.font = Factory.systemFontWithSize(25)
     }
 }

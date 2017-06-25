@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Protocol, um vom TableVC die Nachricht zu bekommen, wenn eine cell gedrückt wurde
+// Protocol to receive notifications a cell is pressed or dismissed in order to adjust the nameLabel
 protocol popUpViewDelegate {
     func popUpViewAdded()
     func popUpViewDismissed()
@@ -18,61 +18,65 @@ class ViewController: UIViewController, popUpViewDelegate {
 
     var backgroundLayer: CAGradientLayer!
 
+    // label with my name
     var nameLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLabel = BMLabel(frame: CGRectMake(0, 0, 200, 50))
-        nameLabel.center = CGPointMake(self.view.frame.width / 2, 50)
+        nameLabel = BMLabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        nameLabel.center = CGPoint(x: self.view.frame.width / 2, y: 50)
         nameLabel.text = "Bastian Morath"
         self.view.addSubview(self.nameLabel)
 
         self.setupBackground()
         self.setupCollectionViewController()
-        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .None)
+        UIApplication.shared.setStatusBarHidden(true, with: .none)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
+
     func setupBackground(){
-        // Gradient
+        // Add Gradient
         backgroundLayer = Factory.colorGradient()
         backgroundLayer.frame = view.frame
-        view.layer.insertSublayer(backgroundLayer, atIndex: 0)
+        view.layer.insertSublayer(backgroundLayer, at: 0)
 
-        // Blur
-        var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
+        // Add Blur
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light)) as UIVisualEffectView
         visualEffectView.frame = view.bounds
-        view.insertSubview(visualEffectView, atIndex: 0)
+        view.insertSubview(visualEffectView, at: 0)
     }
 
+
     func setupCollectionViewController(){
-        var collectionViewController = BMCollectionVC()
+        let collectionViewController = BMCollectionVC()
 
         collectionViewController.collectionView = UICollectionView(frame:self.view.frame , collectionViewLayout: BMCollectionViewLayout())
-        collectionViewController.collectionView!.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionViewController.collectionView!.register(CollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionViewController.setup()
         collectionViewController.delegate = self
         self.addChildViewController(collectionViewController)
         self.view.addSubview(collectionViewController.view)
 
-        collectionViewController.didMoveToParentViewController(self)
+        collectionViewController.didMove(toParentViewController: self)
 
     }
 
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         backgroundLayer.frame = view.frame
 
     }
 
     // remove nameLabel
     func popUpViewAdded() {
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
             var frame = self.nameLabel.frame
             frame.origin.y -= 100
             self.nameLabel.frame = frame
@@ -80,9 +84,10 @@ class ViewController: UIViewController, popUpViewDelegate {
         })
     }
 
+    // Add nameLabel
     func popUpViewDismissed() {
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
-            self.nameLabel.center = CGPointMake(self.view.frame.width / 2, 50)
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.nameLabel.center = CGPoint(x: self.view.frame.width / 2, y: 50)
         })
 
     }

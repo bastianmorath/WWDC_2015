@@ -17,7 +17,8 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3io-ir-Asa">
                         <rect key="frame" x="122" y="28" width="107" height="107"/>
-                        <color key="tintColor" red="0.99849123679999996" green="0.99849123679999996" blue="0.99849123679999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="3io-ir-Asa" secondAttribute="height" multiplier="1:1" id="62M-DS-EKd"/>
                         </constraints>

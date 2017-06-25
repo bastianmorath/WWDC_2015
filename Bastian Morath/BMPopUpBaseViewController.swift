@@ -8,15 +8,18 @@
 
 import UIKit
 
+// This controller pops up when the user presses a cell in the collectionView and displays an image with a text
+
 class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var topic: Factory.BMTopic!
+
     var imageShape: Factory.BMImageShape!
 
+    // Frame of the pressed cell is stored in order to dismiss the view properly when the user presses the close-Button
     var cellFrame: CGRect!
 
     var delegate:popUpViewDelegate!
-
 
     var tableView: UITableView!
 
@@ -28,13 +31,15 @@ class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableV
         self.view.layer.cornerRadius = cellFrame.width / 2
         self.view.layer.masksToBounds = true
 
-        self.tableView = UITableView(frame: CGRectMake(0, 0, kPopUpFrame.width, kPopUpFrame.height), style: .Plain)
-        self.tableView.backgroundColor = .clearColor()
-        self.tableView.separatorStyle = .None
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: kPopUpFrame.width, height: kPopUpFrame.height), style: .plain)
+        self.tableView.backgroundColor = .clear
+        self.tableView.separatorStyle = .none
+        self.tableView.showsVerticalScrollIndicator = false
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.registerNib(UINib(nibName: "BMPictureTableViewCell", bundle: nil), forCellReuseIdentifier: "pictureCell")
-        self.tableView.registerNib(UINib(nibName: "BMTextTableViewCell", bundle: nil), forCellReuseIdentifier: "textCell")
+        self.tableView.register(UINib(nibName: "BMPictureTableViewCell", bundle: nil), forCellReuseIdentifier: "pictureCell")
+        self.tableView.register(UINib(nibName: "BMTextTableViewCell", bundle: nil), forCellReuseIdentifier: "textCell")
         self.view.addSubview(self.tableView)
     }
 
@@ -45,36 +50,35 @@ class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableV
 
     func setup(){
         // Add close-Button
-        var closeButton = BMButton(type: .Close)
+        let closeButton = BMButton(type: .close)
         self.view.addSubview(closeButton)
         closeButton.position()
-        closeButton.addTarget(self, action: "closePressed", forControlEvents: .TouchUpInside)
+        closeButton.addTarget(self, action: "closePressed", for: .touchUpInside)
     }
 
 
     func closePressed(){
         self.delegate.popUpViewDismissed()
-        UIView.animateWithDuration(kAnimationDuration, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.view.frame =   self.cellFrame
-            self.tableView.layer.anchorPoint = CGPointMake(0.4, 0.6)
-
-           // self.tableView.contentInset = UIEdgeInsetsMake(-self.cellFrame.origin.y, -self.cellFrame.origin.x, 0, 0)
+            self.tableView.layer.anchorPoint = CGPoint(x: 0.4, y: 0.6)
             }, completion: { (Bool) -> Void in
                 self.view.removeFromSuperview()
-                let parentVC = self.parentViewController as! BMCollectionVC
-                parentVC.collectionView?.scrollEnabled = true
+                let parentVC = self.parent as! BMCollectionVC
+                parentVC.collectionView?.isScrollEnabled = true
                 self.removeFromParentViewController()
         })
 
     }
 
-     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row{
         case 0:
-            return UIScreen.mainScreen().bounds.width/2 + 100
+            return UIScreen.main.bounds.width/2 + 100
         case 1:
             return Factory.heightForString(Factory.descriptionStringForTopic(self.topic))
         default:
@@ -82,20 +86,20 @@ class BMPopUpBaseViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
 
-     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            var cell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell") as! BMPictureTableViewCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "pictureCell") as! BMPictureTableViewCell
             cell.imageShape = self.imageShape
             cell.configureWithGeneralTopic(self.topic)
             return cell
         case 1:
-            var cell = self.tableView.dequeueReusableCellWithIdentifier("textCell") as! BMTextTableViewCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "textCell") as! BMTextTableViewCell
             cell.configureWithGeneralTopic(self.topic)
 
             return cell
         default:
-            return self.tableView.dequeueReusableCellWithIdentifier("textCell") as! UITableViewCell
+            return self.tableView.dequeueReusableCell(withIdentifier: "textCell")!
         }
     }
 

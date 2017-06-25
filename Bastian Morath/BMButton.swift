@@ -8,17 +8,22 @@
 
 import UIKit
 
+
+// Custom UIButton subclass
+
+// Size of the button
 let kSize = 25 as CGFloat
+
+// Margin of the button
 let margin = 30 as CGFloat
+
 class BMButton: UIButton {
 
-
     enum BMButtonType {
-        case Close
-
+        case close
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -27,44 +32,43 @@ class BMButton: UIButton {
     }
 
     convenience init(type: BMButtonType){
-        self.init(frame: CGRectMake(0,0,kSize + margin,kSize + margin))
-        self.setTranslatesAutoresizingMaskIntoConstraints( false )
+        self.init(frame: CGRect(x: 0,y: 0,width: kSize + margin,height: kSize + margin))
+
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.showsTouchWhenHighlighted = false
-        var imageView = UIImageView(frame: CGRectMake(0, 0, kSize, kSize))
-        imageView.tintColor = UIColor.whiteColor()
+
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: kSize, height: kSize))
+        imageView.tintColor = UIColor.white
         switch type {
-        case .Close:
-            imageView.image = UIImage(named: "cross.png")
+        case .close:
+            imageView.image = UIImage(named: "crossIcon.png")
         default:
             imageView.image = UIImage()
         }
-        imageView.image = imageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        imageView.image = imageView.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         self.addSubview(imageView)
-
     }
 
     // Takes the current location and position it to the view
     func position(){
-
         let superView = self.superview
 
 
         let views = ["button" : self]
-        /// margin: Abstand der Buttons zum Rand
-        /// topSpace: Abstand des shareLocationButtons zum oberen Rand -> floated zwischen TableView und Map
+        /// margin: Distance from edge to button
         let metrics = ["margin": kMargin+10]
 
-        //Höhe und Breite des Buttons
-        var heightConstraint = "V:[button(\(kSize))]"
-        var widthConstraint = "H:[button(\(kSize))]"
+        
+        let heightConstraint = "V:[button(\(kSize))]"
+        let widthConstraint = "H:[button(\(kSize))]"
 
-        superView!.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(heightConstraint, options: nil, metrics: nil, views: views))
-        superView!.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(widthConstraint, options: nil, metrics: nil, views: views))
+        superView!.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: heightConstraint, options: [], metrics: nil, views: views))
+        superView!.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: widthConstraint, options: [], metrics: nil, views: views))
 
-        var horizontalConstraint = "H:[button]-margin-|"
-        var verticalConstraint =   "V:|-margin-[button]"
+        let horizontalConstraint = "H:[button]-margin-|"
+        let verticalConstraint =   "V:|-margin-[button]"
 
-            superView!.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat(horizontalConstraint, options: nil, metrics: metrics, views: views ) )
-            superView!.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat(verticalConstraint, options: nil, metrics: metrics, views: views ) )
+            superView!.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: horizontalConstraint, options: [], metrics: metrics, views: views ) )
+            superView!.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: verticalConstraint, options: [], metrics: metrics, views: views ) )
     }
 }

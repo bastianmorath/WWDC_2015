@@ -8,22 +8,21 @@
 
 import UIKit
 
+// This Class manages a pageViewController that shows all the coding projects I've worked on
+
 class BMCodingViewController: BMPopUpBaseViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
 
-    var page : Int = 0
-
-    private var cache = NSCache()
+    // Stores already instanciated controllers
+    fileprivate var cache = NSCache<AnyObject, AnyObject>()
 
     var pageViewController: UIPageViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
-        pageViewController.setViewControllers([viewControllerForPage(0)!], direction: .Forward, animated: true, completion: nil)
-        
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
+        pageViewController.setViewControllers([viewControllerForPage(0)!], direction: .forward, animated: true, completion: nil)
         pageViewController.delegate = self
         pageViewController.dataSource = self
         self.addChildViewController(pageViewController)
@@ -35,34 +34,36 @@ class BMCodingViewController: BMPopUpBaseViewController, UIPageViewControllerDel
         // Dispose of any resources that can be recreated.
     }
 
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        page++
-        return viewControllerForPage(page)
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        var index = (viewController as! BMCodingTopicViewController).pageIndex!
+        index += 1
+        if(index >= 5){
+            return nil
+        }
+        return viewControllerForPage(index)
 
     }
 
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        page--
-        return viewControllerForPage(page)
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        var index = (viewController as! BMCodingTopicViewController).pageIndex!
+        if(index <= 0){
+            return nil
+        }
+        index -= 1
+        return viewControllerForPage(index)
     }
 
-    private func viewControllerForPage(page: Int) -> UIViewController? {
-
-        if page >= 0 && page < Factory.BMCodingProject.count-1{
-            if let controller = cache.objectForKey(page) as? UIViewController {
-                //return controller
-            }
-            println("Page: \(self.page % 5)")
-            var controller = BMCodingTopicViewController()
-            controller.project = Factory.BMCodingProject(rawValue: (self.page % 5))
-            cache.setObject(controller, forKey: page)
+    fileprivate func viewControllerForPage(_ page: Int) -> UIViewController? {
+        if(page >= 5) {
+            return nil
+        }
+        if let controller = cache.object(forKey: page as AnyObject) as? UIViewController {
             return controller
         }
-        
-        return nil
+        let controller = BMCodingTopicViewController()
+        controller.project = Factory.BMCodingProject(rawValue: (page % 5))
+        controller.pageIndex = page
+        cache.setObject(controller, forKey: page as AnyObject)
+        return controller
     }
-
-    
-    
-    
 }

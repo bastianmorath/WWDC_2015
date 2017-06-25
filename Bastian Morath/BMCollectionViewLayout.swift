@@ -8,18 +8,19 @@
 
 import UIKit
 
+// This class sets the layout of the ColelctionView. Is it based on the equation -c((x/a)^2 + (y/a)^2) + 1.0, which represents a elliptic paraboloid
 
 class BMCollectionViewLayout: UICollectionViewFlowLayout, UICollectionViewDelegateFlowLayout {
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(200, 200)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 200, height: 200)
     }
     
 
     let interimSpace: CGFloat = 0.0
-    var indexPathForPressedCell: (Bool, NSIndexPath?) = (false,nil)
+    var indexPathForPressedCell: (Bool, IndexPath?) = (false,nil)
 
-    var defaultSize: CGFloat = UIScreen.mainScreen().bounds.width / 2.6
+    var defaultSize: CGFloat = UIScreen.main.bounds.width / 2.6
     var enlargedSize: CGFloat = 300
 
     var center: CGPoint {
@@ -48,49 +49,49 @@ class BMCollectionViewLayout: UICollectionViewFlowLayout, UICollectionViewDelega
     override init() {
         super.init()
     }
-    convenience init(bool: Bool, indexPath: NSIndexPath?){
+    convenience init(bool: Bool, indexPath: IndexPath?){
         self.init()
         indexPathForPressedCell = (bool, indexPath)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
 
-    override func collectionViewContentSize() -> CGSize {
+    override var collectionViewContentSize : CGSize {
         if indexPathForPressedCell.0 == true {
-            return CGSizeMake(defaultSize * CGFloat(array.count-1) + enlargedSize ,
-                defaultSize * CGFloat(array.count-1) + enlargedSize)
+            return CGSize(width: defaultSize * CGFloat(array.count-1) + enlargedSize ,
+                height: defaultSize * CGFloat(array.count-1) + enlargedSize)
 
         }
-        return CGSizeMake(defaultSize * CGFloat(array.count),
-            defaultSize * CGFloat(array.count))
+        return CGSize(width: defaultSize * CGFloat(array.count),
+            height: defaultSize * CGFloat(array.count))
 
     }
 
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
-        var attributes = [AnyObject]()
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        var attributes = [UICollectionViewLayoutAttributes]()
         for i in 0 ..< cellCount {
-            let indexPath = NSIndexPath(forItem: i, inSection: 0)
-            attributes.append(self.layoutAttributesForItemAtIndexPath(indexPath))
+            let indexPath = IndexPath(item: i, section: 0)
+            attributes.append(self.layoutAttributesForItem(at: indexPath))
         }
         return attributes
     }
 
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes!
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes!
     {
-        var attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
 
         let oIndex = indexPath.item % array.count
         let vIndex = (indexPath.item - oIndex) / array.count
 
         var x = 0 as CGFloat
         var y = 0 as CGFloat
-        var size: CGFloat = defaultSize
+        let size: CGFloat = defaultSize
 
         x = CGFloat(oIndex) * size + size/2
         y = CGFloat(vIndex) * size + size/2
@@ -110,7 +111,7 @@ class BMCollectionViewLayout: UICollectionViewFlowLayout, UICollectionViewDelega
         var z = c * (x+y) + 1.0
         z = z < 0.0 ? 0.0 : z
 
-        attributes.transform = CGAffineTransformMakeScale(z, z)
+        attributes.transform = CGAffineTransform(scaleX: z, y: z)
         attributes.size = CGSize(width: size, height: size)
         return attributes
     }
